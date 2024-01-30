@@ -1,0 +1,16 @@
+name: Commitlint
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  call:
+    uses: opiproject/actions/.github/workflows/commitlint.yml@main
+    secrets: inherit
