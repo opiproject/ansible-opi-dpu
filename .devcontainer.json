@@ -3,6 +3,9 @@
         "dockerfile": "Dockerfile"
     },
     "init": true,
+    "features": {
+        "ghcr.io/devcontainers-contrib/features/ansible:2": {}
+    },
     "customizations": {
         "vscode": {
             "extensions": [
