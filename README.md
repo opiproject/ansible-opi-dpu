@@ -12,7 +12,17 @@
 [![GitHub stars](https://img.shields.io/github/stars/opiproject/ansible-opi-dpu.svg?style=flat-square&label=github%20stars)](https://github.com/opiproject/ansible-opi-dpu)
 [![GitHub Contributors](https://img.shields.io/github/contributors/opiproject/ansible-opi-dpu.svg?style=flat-square)](https://github.com/opiproject/ansible-opi-dpu/graphs/contributors)
 
-Documentation for the collection.
+Ansible modules for DPUs. The proposed scope is (change this later):
+
+- change bmc password on first use
+- update bmc fw
+- reset bmc
+- factory reset bmc
+- time sync bmc
+- change cpu boot order
+- time sync cpu
+- OS boot
+- change net speed on dpu ports
 
 ## I Want To Contribute
 
