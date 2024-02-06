@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+---
+argument_specs:
+  main:
+    version_added: "1.0.0"
+    short_description: Update Password of DPU BMC for a given user.
+    description:
+      - Update Password of DPU BMC for a given user.
+    options:
+      update_bmc_password_login_name:
+        type: str
+        description: DPU BMC username to change.
+      update_bmc_password_new_pass:
+        type: str
+        description: DPU BMC new password to apply for the given user.

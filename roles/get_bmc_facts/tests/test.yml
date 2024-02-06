@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Gather DPU BMC facts
+  hosts: localhost
   remote_user: root
   roles:
     - get_bmc_facts

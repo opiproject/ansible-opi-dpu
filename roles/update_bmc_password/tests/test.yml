@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Update DPU BMC password
+  hosts: localhost
   remote_user: root
   roles:
     - update_bmc_password

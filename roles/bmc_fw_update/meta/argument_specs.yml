@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+---
+argument_specs:
+  main:
+    version_added: "1.0.0"
+    short_description: Firmware update of DPU BMC
+    description:
+      - Update the Firmware of the DPU BMC from URL or local file.
+    options:
+      bmc_fw_update_reboot:
+        description:
+          - Provides the option to apply the update packages immediately or in the next reboot.
+          - If I(reboot) is set to C(true),  then the packages  are applied immediately.
+          - If I(reboot) is set to C(false), then the packages are staged and applied in the next reboot.
+          - Packages that do not require a reboot are applied immediately irrespective of I (reboot).
+        type: bool
+        default: true
+      bmc_fw_update_job_wait:
+        description: Whether to wait for job completion or not.
+        type: bool
+        default: true

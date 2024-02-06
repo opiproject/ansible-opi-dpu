@@ -1,2 +1,86 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+
 ---
 # tasks file for bmc_fw_update
+
+- name: Get Firmware Inventory
+  ansible.builtin.include_role:
+    name: get_bmc_facts
+  register: get_bmc_facts_before
+
+- name: Print BMC Version
+  ansible.builtin.debug:
+    msg: "{{ bmc_firmware_version }}"
+
+- name: Download firmware image {{ bmc_fw_update_image.bmc }}
+  ansible.builtin.get_url:
+    url: "{{ bmc_fw_update_image.url }}/{{ bmc_fw_update_image.bmc }}"
+    dest: /tmp/{{ bmc_fw_update_image.bmc }}
+    mode: '0440'
+  delegate_to: localhost
+
+- name: Update BMC firmware of DPU
+  community.general.redfish_command:
+    category: Update
+    command: MultipartHTTPPushUpdate
+    baseuri: "{{ inventory_hostname }}"
+    username: "{{ dpu_bmc_username }}"
+    password: "{{ dpu_bmc_password }}"
+    timeout: 600
+    update_image_file: "/tmp/{{ bmc_fw_update_image.bmc }}"
+  register: result_update_task
+  delegate_to: localhost
+
+- name: Extract task id from update task
+  ansible.builtin.set_fact:
+    bmc_firmware_update_taskid: "{{ result_update_task.return_values.update_status.handle }}"
+
+- name: Print TASK id for tracking
+  ansible.builtin.debug:
+    msg: "{{ result_update_task.return_values.update_status.handle }}"
+
+- name: Pause for 10 seconds for BMC to start task
+  ansible.builtin.pause:
+    seconds: 10
+
+- name: Get the status of an update operation in a loop
+  community.general.redfish_info:
+    category: Update
+    command: GetUpdateStatus
+    baseuri: "{{ inventory_hostname }}"
+    username: "{{ dpu_bmc_username }}"
+    password: "{{ dpu_bmc_password }}"
+    update_handle: "{{ result_update_task.return_values.update_status.handle }}"
+  register: update_progress
+  until: update_progress.redfish_facts.update_status.status != 'Running'
+  retries: 60
+  delay: 30
+  delegate_to: localhost
+
+- name: Validate task was completed
+  ansible.builtin.assert: { that: "update_progress.redfish_facts.update_status.status == 'Completed'" }
+
+- name: Reboot BMC to apply new firmware of DPU
+  ansible.builtin.include_role:
+    name: bmc_reboot
+  when:
+    - bmc_fw_update_reboot is true
+
+- name: Pause for 60 seconds for BMC to Reboot
+  ansible.builtin.pause:
+    seconds: 60
+
+- name: Get Firmware Inventory
+  ansible.builtin.include_role:
+    name: get_bmc_facts
+  register: get_bmc_facts_after
+
+- name: Print BMC Version
+  ansible.builtin.debug:
+    msg: "{{ get_bmc_facts_after.redfish_facts.firmware.entries[0].Version }}"
+
+- name: Validate fw image changed from before
+  ansible.builtin.assert:
+    that:
+      - get_bmc_facts_before.redfish_facts.firmware.entries[0].Version != get_bmc_facts_after.redfish_facts.firmware.entries[0].Version
