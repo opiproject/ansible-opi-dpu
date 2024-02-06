@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Firmware update of the DPU BMC
+  hosts: localhost
   remote_user: root
   roles:
     - bmc_fw_update

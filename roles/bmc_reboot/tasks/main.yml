@@ -1,2 +1,14 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+
 ---
 # tasks file for bmc_reboot
+
+- name: Reboot BMC to apply new firmware of DPU
+  community.general.redfish_command:
+    category: Manager
+    command: GracefulRestart
+    baseuri: "{{ inventory_hostname }}"
+    username: "{{ dpu_bmc_username }}"
+    password: "{{ dpu_bmc_password }}"
+  delegate_to: localhost

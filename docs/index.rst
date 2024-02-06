@@ -26,7 +26,7 @@ Ansible modules for DPUs
 
 **Supported ansible-core versions:**
 
-* 2.9.10 or newer
+* 2.14.0 or newer
 
 .. ansible-links::
 
@@ -49,4 +49,19 @@ Plugin Index
 
 There are no plugins in the opi.dpu collection with automatically generated documentation.
 
+
+Role Index
+----------
+
+These are the roles in the opi.dpu collection:
+
+* :ansplugin:`bmc_fw_update role <opi.dpu.bmc_fw_update#role>` -- Firmware update of DPU BMC
+* :ansplugin:`update_bmc_password role <opi.dpu.update_bmc_password#role>` -- Update Password of DPU BMC for a given user.
+
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    bmc_fw_update_role
+    update_bmc_password_role
 

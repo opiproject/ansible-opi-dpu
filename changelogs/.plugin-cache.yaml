@@ -1,0 +1,23 @@
+objects:
+  role:
+    bmc_fw_update:
+      description: Firmware update of DPU BMC
+      name: bmc_fw_update
+      version_added: 1.0.0
+plugins:
+  become: {}
+  cache: {}
+  callback: {}
+  cliconf: {}
+  connection: {}
+  filter: {}
+  httpapi: {}
+  inventory: {}
+  lookup: {}
+  module: {}
+  netconf: {}
+  shell: {}
+  strategy: {}
+  test: {}
+  vars: {}
+version: 1.0.0

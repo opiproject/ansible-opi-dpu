@@ -1,2 +1,16 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+
 ---
 # tasks file for update_bmc_password
+
+- name: Update user password
+  community.general.redfish_command:
+    category: Accounts
+    command: UpdateUserPassword
+    baseuri: "{{ inventory_hostname }}"
+    username: "{{ dpu_bmc_username }}"
+    password: "{{ dpu_bmc_password }}"
+    account_username: "{{ update_bmc_password_login_name }}"
+    account_password: "{{ update_bmc_password_new_pass }}"
+  delegate_to: localhost

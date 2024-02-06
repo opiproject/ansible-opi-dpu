@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Reset DPU BMC
+  hosts: localhost
   remote_user: root
   roles:
     - bmc_reboot

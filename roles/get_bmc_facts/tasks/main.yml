@@ -1,2 +1,19 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+
 ---
 # tasks file for get_bmc_facts
+
+- name: Get Firmware Inventory
+  community.general.redfish_info:
+    category: Update
+    command: GetFirmwareInventory
+    baseuri: "{{ inventory_hostname }}"
+    username: "{{ dpu_bmc_username }}"
+    password: "{{ dpu_bmc_password }}"
+  register: result
+  delegate_to: localhost
+
+- name: Extract BMC firmware version from inventory
+  ansible.builtin.set_fact:
+    bmc_firmware_version: "{{ result.redfish_facts.firmware.entries[0].Version }}"
