@@ -1,3 +1,4 @@
 ---
 collections:
-  - name: opi.dpu
+  - opi.dpu
+  - community.general
