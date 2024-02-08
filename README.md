@@ -24,6 +24,8 @@ Ansible modules for DPUs. The proposed scope is (change this later):
 - OS boot
 - change net speed on dpu ports
 
+More examples on this page [LIFECYCLE](https://github.com/opiproject/opi-prov-life/blob/main/LIFECYCLE.md)
+
 ## I Want To Contribute
 
 This project welcomes contributions and suggestions.  We are happy to have the Community involved via submission of **Issues and Pull Requests** (with substantive content or even just fixes). We are hoping for the documents, test framework, etc. to become a community process with active engagement.  PRs can be reviewed by by any number of people, and a maintainer may accept.
