@@ -75,11 +75,11 @@ jobs:
       - name: Setup Unit test Pre-requisites
         run: |
           ansible-galaxy collection install .cache/collection-tarballs/*.tar.gz
-          if [ -f /home/runner/.ansible/collections/ansible_collections/dellemc/powerflex/tests/requirements.txt ]; then pip install -r /home/runner/.ansible/collections/ansible_collections/dellemc/powerflex/tests/requirements.txt; fi
+          if [ -f /home/runner/.ansible/collections/ansible_collections/opiproject/ansible-opi-dpu/tests/requirements.txt ]; then pip install -r /home/runner/.ansible/collections/ansible_collections/opiproject/ansible-opi-dpu/tests/requirements.txt; fi
 
       - name: Run Unit tests using ansible-test
         run: ansible-test units -v --color --python ${{ matrix.python-version }} --coverage
-        working-directory: /home/runner/.ansible/collections/ansible_collections/dellemc/powerflex
+        working-directory: /home/runner/.ansible/collections/ansible_collections/opiproject/ansible-opi-dpu
 
   ###
   # Sanity tests (REQUIRED)
@@ -125,7 +125,7 @@ jobs:
       # and all python versions ansible supports.
       - name: Run sanity tests
         run: ansible-test sanity --docker -v --color
-        working-directory: /home/runner/.ansible/collections/ansible_collections/dellemc/powerflex
+        working-directory: /home/runner/.ansible/collections/ansible_collections/opiproject/ansible-opi-dpu
 
   lint:
     name: Ansible lint
@@ -170,4 +170,4 @@ jobs:
 
       - name: Run Ansible lint
         run: ansible-lint --show-relpath
-        working-directory: /home/runner/work/ansible-powerflex/ansible-powerflex
+        working-directory: /home/runner/work/ansible-opi-dpu/ansible-opi-dpu
