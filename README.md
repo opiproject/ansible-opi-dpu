@@ -3,7 +3,7 @@
 [![Linters](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/linters.yml/badge.svg)](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/linters.yml)
 [![CodeQL](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/codeql.yml/badge.svg)](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/codeql.yml)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/opiproject/ansible-opi-dpu/badge)](https://securityscorecards.dev/viewer/?platform=github.com&org=opiproject&repo=ansible-opi-dpu)
-[![tsets](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/ansible.yml/badge.svg)](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/ansible.yml)
+[![Tests](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/ansible.yml/badge.svg)](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/ansible.yml)
 [![Docker](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/opiproject/ansible-opi-dpu/actions/workflows/docker-publish.yml)
 [![License](https://img.shields.io/github/license/opiproject/ansible-opi-dpu?style=flat-square&color=blue&label=License)](https://github.com/opiproject/ansible-opi-dpu/blob/master/LICENSE)
 [![codecov](https://codecov.io/gh/opiproject/ansible-opi-dpu/branch/main/graph/badge.svg)](https://codecov.io/gh/opiproject/ansible-opi-dpu)
