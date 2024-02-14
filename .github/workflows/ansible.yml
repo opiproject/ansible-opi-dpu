@@ -1,4 +1,4 @@
-name: CI
+name: Ansible
 
 on:
   push:
@@ -15,15 +15,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        python-version: ["3.11"]
         ansible-version: [stable-2.16]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.11
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: ${{ matrix.python-version }}
 
       - name: Install ansible (${{ matrix.ansible-version }})
         run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible-version }}.tar.gz --disable-pip-version-check
