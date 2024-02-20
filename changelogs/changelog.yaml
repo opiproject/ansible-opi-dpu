@@ -6,4 +6,7 @@ releases:
         - description: Firmware update of DPU BMC
           name: bmc_fw_update
           namespace: null
+        - description: Update Password of DPU BMC for a given user.
+          name: update_bmc_password
+          namespace: null
     release_date: '2024-02-20'

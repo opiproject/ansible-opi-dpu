@@ -4,6 +4,10 @@ objects:
       description: Firmware update of DPU BMC
       name: bmc_fw_update
       version_added: 1.0.0
+    update_bmc_password:
+      description: Update Password of DPU BMC for a given user.
+      name: update_bmc_password
+      version_added: 1.0.0
 plugins:
   become: {}
   cache: {}

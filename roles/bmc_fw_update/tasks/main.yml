@@ -78,7 +78,7 @@
 
 - name: Print BMC Version
   ansible.builtin.debug:
-    msg: "{{ get_bmc_facts_after.redfish_facts.firmware.entries[0].Version }}"
+    msg: "{{ bmc_firmware_version }}"
 
 - name: Validate fw image changed from before
   ansible.builtin.assert:
