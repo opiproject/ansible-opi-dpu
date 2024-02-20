@@ -125,7 +125,7 @@ jobs:
         run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible-version }}.tar.gz --disable-pip-version-check
 
       - name: Install ansible lint
-        run: pip install ansible-lint --disable-pip-version-check
+        run: pip install ansible-lint jmespath --disable-pip-version-check
 
       - name: Download migrated collection artifacts
         uses: actions/download-artifact@v1
