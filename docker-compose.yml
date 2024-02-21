@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+---
+version: "3.7"
+
+services:
+
+  bmc:
+    image: docker.io/dmtf/redfish-mockup-server:1.2.4
+    networks:
+      - opi
+
+networks:
+  opi:
