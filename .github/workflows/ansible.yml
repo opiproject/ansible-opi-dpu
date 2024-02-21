@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.11"]
-        ansible-version: [stable-2.16]
+        ansible-version: [stable-2.14, stable-2.15, stable-2.16, devel]
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -57,30 +57,14 @@ jobs:
         - python-version: "3.9"
           ansible-version: stable-2.16
 
-
     steps:
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+      - name: Perform unit testing with ansible-test
+        uses: ansible-community/ansible-test-gh-action@release/v1
         with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install ansible (${{ matrix.ansible-version }}) version
-        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible-version }}.tar.gz --disable-pip-version-check
-
-      - name: Download migrated collection artifacts
-        uses: actions/download-artifact@v1
-        with:
-          name: collection
-          path: .cache/collection-tarballs
-
-      - name: Setup Unit test Pre-requisites
-        run: |
-          ansible-galaxy collection install .cache/collection-tarballs/*.tar.gz
-          if [ -f /home/runner/.ansible/collections/ansible_collections/opiproject/ansible-opi-dpu/tests/requirements.txt ]; then pip install -r /home/runner/.ansible/collections/ansible_collections/opiproject/ansible-opi-dpu/tests/requirements.txt; fi
-
-      - name: Run Unit tests using ansible-test
-        run: ansible-test units -v --color --python ${{ matrix.python-version }} --coverage
-        working-directory: /home/runner/.ansible/collections/ansible_collections/opiproject/ansible-opi-dpu
+          testing-type: units
+          coverage: always
+          ansible-core-version: ${{ matrix.ansible-version }}
+          target-python-version: ${{ matrix.python-version }}
 
   ###
   # Sanity tests (REQUIRED)
