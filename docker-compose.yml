@@ -10,5 +10,13 @@ services:
     networks:
       - opi
 
+  opi-test:
+    image: docker.io/curlimages/curl:8.5.0
+    depends_on:
+      - bmc
+    networks:
+      - opi
+    command: ["--fail", "-i", "-H", "Accept:application/yang-data+json", "http://bmc:8000/redfish/v1/Managers"]
+
 networks:
   opi:
