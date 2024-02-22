@@ -9,11 +9,14 @@ services:
     image: docker.io/dmtf/redfish-mockup-server:1.2.4
     networks:
       - opi
+    healthcheck:
+      test: curl --fail http://localhost:8000/redfish/
 
   opi-test:
     image: docker.io/curlimages/curl:8.5.0
     depends_on:
-      - bmc
+      bmc:
+        condition: service_healthy
     networks:
       - opi
     command: ["--fail", "-i", "-H", "Accept:application/yang-data+json", "http://bmc:8000/redfish/v1/Managers"]
