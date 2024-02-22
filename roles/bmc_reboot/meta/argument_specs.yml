@@ -29,3 +29,13 @@ argument_specs:
         description:
           - DPU BMC port.
         default: 443
+      bmc_reboot_should_wait:
+        description:
+          - Wait for the BMC to restart.
+        type: bool
+        default: true
+      bmc_reboot_wait_timeout:
+        description:
+          - Seconds to wait for the BMC to restart.
+        type: int
+        default: 120

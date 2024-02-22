@@ -115,6 +115,92 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--bmc_reboot_should_wait"></div>
+
+      .. _ansible_collections.opiproject.dpu.bmc_reboot_role__parameter-main__bmc_reboot_should_wait:
+
+      .. rst-class:: ansible-option-title
+
+      **bmc_reboot_should_wait**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--bmc_reboot_should_wait" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`boolean`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Wait for the BMC to restart.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-choices:`Choices:`
+
+      - :ansible-option-choices-entry:`false`
+      - :ansible-option-choices-entry-default:`true` :ansible-option-choices-default-mark:`← (default)`
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--bmc_reboot_wait_timeout"></div>
+
+      .. _ansible_collections.opiproject.dpu.bmc_reboot_role__parameter-main__bmc_reboot_wait_timeout:
+
+      .. rst-class:: ansible-option-title
+
+      **bmc_reboot_wait_timeout**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--bmc_reboot_wait_timeout" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`integer`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Seconds to wait for the BMC to restart.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-default-bold:`Default:` :ansible-option-default:`120`
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--hostname"></div>
 
       .. _ansible_collections.opiproject.dpu.bmc_reboot_role__parameter-main__hostname:
