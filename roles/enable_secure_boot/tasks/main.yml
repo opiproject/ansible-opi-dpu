@@ -1,2 +1,14 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+
 ---
 # tasks file for enable_secure_boot
+
+- name: Enable SecureBoot
+  community.general.redfish_config:
+    category: Systems
+    command: EnableSecureBoot
+    baseuri: "{{ inventory_hostname }}"
+    username: "{{ dpu_bmc_username }}"
+    password: "{{ dpu_bmc_password }}"
+  delegate_to: localhost
