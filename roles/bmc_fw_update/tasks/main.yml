@@ -85,7 +85,7 @@
   ansible.builtin.debug:
     msg: "{{ bmc_firmware_version }}"
 
-- name: Validate fw image changed from before
-  ansible.builtin.assert:
-    that:
-      - get_bmc_facts_before.redfish_facts.firmware.entries[0].Version != get_bmc_facts_after.redfish_facts.firmware.entries[0].Version
+- name: Validate fw image matches given filename
+  ansible.builtin.fail:
+    msg: "{{ bmc_fw_update_version_failure }}"
+  when: not bmc_fw_update_image.bmc is search(bmc_firmware_version | regex_search('[0-9-.]+'))

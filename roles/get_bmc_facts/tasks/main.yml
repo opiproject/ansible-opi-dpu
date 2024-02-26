@@ -16,4 +16,4 @@
 
 - name: Extract BMC firmware version from inventory
   ansible.builtin.set_fact:
-    bmc_firmware_version: "{{ result.redfish_facts.firmware | community.general.json_query('entries[?Id==`BMC_Firmware`].Version') }}"
+    bmc_firmware_version: "{{ result.redfish_facts.firmware | community.general.json_query('entries[?Id==`BMC_Firmware`].Version') | first }}"
