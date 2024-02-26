@@ -13,12 +13,19 @@
   ansible.builtin.debug:
     msg: "{{ bmc_firmware_version }}"
 
+- name: Check if firmware image exists locally {{ bmc_fw_update_image.bmc }}
+  ansible.builtin.stat:
+    path: "{{ bmc_fw_update_image.dir }}/{{ bmc_fw_update_image.bmc }}"
+  delegate_to: localhost
+  register: bmc_fw_update_local_file_check
+
 - name: Download firmware image {{ bmc_fw_update_image.bmc }}
   ansible.builtin.get_url:
     url: "{{ bmc_fw_update_image.url }}/{{ bmc_fw_update_image.bmc }}"
-    dest: /tmp/{{ bmc_fw_update_image.bmc }}
+    dest: "{{ bmc_fw_update_image.dir }}"
     mode: '0440'
   delegate_to: localhost
+  when: not bmc_fw_update_local_file_check.stat.exists
 
 - name: Update BMC firmware of DPU
   community.general.redfish_command:
