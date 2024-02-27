@@ -69,10 +69,6 @@
   when:
     - bmc_fw_update_reboot is true
 
-- name: Pause for 60 seconds for BMC to Reboot
-  ansible.builtin.pause:
-    seconds: 60
-
 - name: Get Firmware Inventory
   ansible.builtin.include_role:
     name: get_bmc_facts
