@@ -6,11 +6,19 @@ version: "3.7"
 services:
 
   bmc:
-    image: docker.io/dmtf/redfish-mockup-server:1.2.4
+    image: docker.io/dmtf/redfish-mockup-server:1.2.5
+    ports:
+      - 8000:443
     networks:
       - opi
+    entrypoint: ["/bin/bash"]
+    command: |
+      -x -c '
+      openssl req -x509 -nodes -newkey rsa:2048 -keyout key.pem -out cert.pem -sha256 -days 365 \
+                        -subj "/C=GB/ST=London/L=London/O=Alros/OU=IT Department/CN=localhost" && \
+      python /usr/src/app/redfishMockupServer.py -H 0.0.0.0 --ssl --key ./key.pem --cert ./cert.pem --port 443'
     healthcheck:
-      test: curl --fail http://localhost:8000/redfish/
+      test: curl --insecure --fail https://localhost:443/redfish/
 
   opi-test:
     image: docker.io/curlimages/curl:8.5.0
@@ -19,7 +27,20 @@ services:
         condition: service_healthy
     networks:
       - opi
-    command: ["--fail", "-i", "-H", "Accept:application/yang-data+json", "http://bmc:8000/redfish/v1/Managers"]
+    command: ["--fail", "--insecure", "-i", "-H", "Accept:application/yang-data+json", "https://bmc:443/redfish/v1/Managers"]
+
+  ansible-test:
+    image: ghcr.io/opiproject/ansible-opi-dpu:main
+    depends_on:
+      bmc:
+        condition: service_healthy
+    networks:
+      - opi
+    volumes:
+      - ./:/opt/
+    working_dir: /opt/roles
+    command: ["bmc", "--module-name", "include_role", "--args", "name=bmc_fw_update", "-vvv", "-i", "bmc,",
+              "-e", "dpu_bmc_username='root'", "-e", "dpu_bmc_password='123456'"]
 
 networks:
   opi:
