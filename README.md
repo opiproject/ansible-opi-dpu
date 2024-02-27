@@ -38,5 +38,7 @@ using docker
 
 ```bash
 docker run --rm -it --entrypoint ansible-playbook -v $(pwd):$(pwd) -w $(pwd)/roles ghcr.io/opiproject/ansible-opi-dpu:main ../playbooks/firmware.yml -vvv -i "10.10.10.1," -e dpu_bmc_username='root' -e dpu_bmc_password='123456'
+or
+docker run --rm -it -v $(pwd):/opt -w /opt/roles ghcr.io/opiproject/ansible-opi-dpu:main 10.10.10.1 --module-name include_role --args name=bmc_fw_update -vvv -i "10.10.10.1," -e dpu_bmc_username='root' -e dpu_bmc_password='123456'
 ```
 
