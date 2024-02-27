@@ -34,4 +34,9 @@ See [CONTRIBUTING](https://github.com/opiproject/opi/blob/main/CONTRIBUTING.md) 
 
 ## Getting started
 
-tbd
+using docker
+
+```bash
+docker run --rm -it --entrypoint ansible-playbook -v $(pwd):$(pwd) -w $(pwd)/roles ghcr.io/opiproject/ansible-opi-dpu:main ../playbooks/firmware.yml -vvv -i "10.10.10.1," -e dpu_bmc_username='root' -e dpu_bmc_password='123456'
+```
+
