@@ -78,6 +78,88 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_image_file"></div>
+
+      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_image_file:
+
+      .. rst-class:: ansible-option-title
+
+      **bmc_fw_update_image_file**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--bmc_fw_update_image_file" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Local file of the BMC fw image, if exists bmc\_fw\_update\_image\_url is ignored.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-default-bold:`Default:` :ansible-option-default:`"True"`
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_image_url"></div>
+
+      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_image_url:
+
+      .. rst-class:: ansible-option-title
+
+      **bmc_fw_update_image_url**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--bmc_fw_update_image_url" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      URL of the BMC fw image. Ignored if bmc\_fw\_update\_image\_file exists.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-default-bold:`Default:` :ansible-option-default:`"True"`
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_job_wait"></div>
 
       .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_job_wait:

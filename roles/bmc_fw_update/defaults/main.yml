@@ -6,3 +6,5 @@
 
 bmc_fw_update_reboot: true
 bmc_fw_update_job_wait: true
+bmc_fw_update_image_url: https://content.mellanox.com/BlueField/BMC/23.10-1-oct-2023/bf3-bmc-23.10-5_opn.fwpkg
+bmc_fw_update_image_file: /tmp/bf3-bmc-23.10-5_opn.fwpkg
