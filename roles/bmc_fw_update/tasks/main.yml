@@ -13,16 +13,16 @@
   ansible.builtin.debug:
     msg: "{{ bmc_firmware_version }}"
 
-- name: Check if firmware image exists locally {{ bmc_fw_update_image.bmc }}
+- name: Check if firmware image exists locally {{ bmc_fw_update_image_file }}
   ansible.builtin.stat:
-    path: "{{ bmc_fw_update_image.dir }}/{{ bmc_fw_update_image.bmc }}"
+    path: "{{ bmc_fw_update_image_file }}"
   delegate_to: localhost
   register: bmc_fw_update_local_file_check
 
-- name: Download firmware image {{ bmc_fw_update_image.bmc }}
+- name: Download firmware image {{ bmc_fw_update_image_url }}
   ansible.builtin.get_url:
-    url: "{{ bmc_fw_update_image.url }}/{{ bmc_fw_update_image.bmc }}"
-    dest: "{{ bmc_fw_update_image.dir }}"
+    url: "{{ bmc_fw_update_image_url }}"
+    dest: "{{ bmc_fw_update_image_file }}"
     mode: '0440'
   delegate_to: localhost
   when: not bmc_fw_update_local_file_check.stat.exists
@@ -35,7 +35,7 @@
     username: "{{ dpu_bmc_username }}"
     password: "{{ dpu_bmc_password }}"
     timeout: 600
-    update_image_file: "/tmp/{{ bmc_fw_update_image.bmc }}"
+    update_image_file: "{{ bmc_fw_update_image_file }}"
   register: result_update_task
   delegate_to: localhost
 

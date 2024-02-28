@@ -6,7 +6,3 @@
 
 bmc_fw_update_task_failure: "Task failed with status: %s"
 bmc_fw_update_version_failure: "Version returned from BMC doesn't match version in the file name"
-bmc_fw_update_image:
-  url: https://content.mellanox.com/BlueField/BMC/23.10-1-oct-2023
-  bmc: bf3-bmc-23.10-5_opn.fwpkg
-  dir: /tmp
