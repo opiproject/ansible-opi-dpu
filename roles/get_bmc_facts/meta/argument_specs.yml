@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+---
+argument_specs:
+  main:
+    version_added: "1.0.0"
+    short_description: Fetch DPU firmware inventory.
+    description:
+      - Fetch DPU firmware inventory and store in facts.
+    options:
+      get_bmc_facts_component_id:
+        type: str
+        description: FW componenet ID name to fetch.

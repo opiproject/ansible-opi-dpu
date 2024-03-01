@@ -56,6 +56,7 @@ Role Index
 These are the roles in the opi.dpu collection:
 
 * :ansplugin:`bmc_fw_update role <opi.dpu.bmc_fw_update#role>` -- Firmware update of DPU BMC
+* :ansplugin:`get_bmc_facts role <opi.dpu.get_bmc_facts#role>` -- Fetch DPU firmware inventory.
 * :ansplugin:`update_bmc_password role <opi.dpu.update_bmc_password#role>` -- Update Password of DPU BMC for a given user.
 
 .. toctree::
@@ -63,5 +64,6 @@ These are the roles in the opi.dpu collection:
     :hidden:
 
     bmc_fw_update_role
+    get_bmc_facts_role
     update_bmc_password_role
 
