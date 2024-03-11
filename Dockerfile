@@ -5,5 +5,8 @@ COPY ./requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir --disable-pip-version-check --requirement /tmp/requirements.txt
 COPY ./requirements.yml /tmp/requirements.yml
 RUN ansible-galaxy collection install --ignore-certs --requirements-file /tmp/requirements.yml
+COPY . /opt/
+RUN ansible-galaxy collection install -vvv /opt
+WORKDIR /opt/roles
 ENTRYPOINT ["/usr/local/bin/ansible"]
 CMD ["--version"]
