@@ -9,3 +9,7 @@ jobs:
   release-docker:
     uses: ./.github/workflows/docker-publish.yml
     secrets: inherit
+  release-galaxy:
+    uses: ansible/ansible-publish-action@1.0.0
+    with:
+      api_key: ${{ secrets.GALAXY_API_KEY }}
