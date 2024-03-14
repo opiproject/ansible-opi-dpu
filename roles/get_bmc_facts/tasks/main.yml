@@ -14,6 +14,7 @@
   register: result
   delegate_to: localhost
 
-- name: Extract BMC firmware version from inventory
+- name: Extract all FW versions to facts
   ansible.builtin.set_fact:
-    bmc_firmware_version: "{{ result.redfish_facts.firmware | community.general.json_query('entries[?Id==`BMC_Firmware`].Version') | first }}"
+    "{{ 'get_bmc_facts_' + item['Id'] | lower }}": "{{ item['Version'] }}"
+  loop: "{{ result.redfish_facts.firmware.entries }}"

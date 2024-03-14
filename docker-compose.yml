@@ -25,6 +25,8 @@ services:
     depends_on:
       bmc:
         condition: service_healthy
+      ansible-test:
+        condition: service_completed_successfully
     networks:
       - opi
     command: ["--fail", "--insecure", "-i", "-H", "Accept:application/yang-data+json", "https://bmc:443/redfish/v1/Managers"]
@@ -39,7 +41,7 @@ services:
     volumes:
       - ./:/opt/
     working_dir: /opt/roles
-    command: ["bmc", "--module-name", "include_role", "--args", "name=bmc_fw_update", "-vvv", "-i", "bmc,",
+    command: ["bmc", "--module-name", "include_role", "--args", "name=get_bmc_facts", "-vvv", "-i", "bmc,",
               "-e", "dpu_bmc_username='root'", "-e", "dpu_bmc_password='123456'"]
 
 networks:
