@@ -1,1 +1,1 @@
-roles/dpu_config/defaults/main.yml var-naming[no-role-prefix]
+roles/get_bmc_facts/tasks/main.yml var-naming[no-jinja]
