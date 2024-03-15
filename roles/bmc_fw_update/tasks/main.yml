@@ -57,6 +57,7 @@
     seconds: 10
 
 - name: Get the status of an update operation in a loop
+  when: bmc_fw_update_job_wait is true
   community.general.redfish_info:
     category: Update
     command: GetUpdateStatus
@@ -74,7 +75,9 @@
 - name: Validate task was completed
   ansible.builtin.fail:
     msg: "{{ bmc_fw_update_task_failure | format(update_progress.redfish_facts.update_status.status) }}"
-  when: update_progress.redfish_facts.update_status.status != 'Completed'
+  when:
+    - bmc_fw_update_job_wait is true
+    - update_progress.redfish_facts.update_status.status != 'Completed'
 
 - name: Reboot BMC to apply new firmware of DPU
   ansible.builtin.include_role:
