@@ -1,0 +1,62 @@
+# exmaple run to update both the bmc fw and the cec in an NVIDIA BlueField
+# ansible-playbook -i ../inventory/bfbmcs.ini --extra-vars "dpu_bmc_username=${BMCUSER} dpu_bmc_password=${BMCPW} bmc_fw_filename=/home/sancho/bmcimages/bf3-bmc-23.10-5_opn.fwpkg bmc_cec_filename=/home/sancho/bmcimages/cec1736-ecfw-00.02.0152.0000-n02-rel-prod.fwpkg fw_version=BF-23.10-5 cec_version=00.02.0152.0000_n02" update_bf.yml
+#
+
+- hosts: bfbmcs
+  gather_facts: no
+  tasks:
+    - name: Install BMC fw
+      import_role:
+        name: bmc_fw_update
+      vars:
+        bmc_fw_update_image_file: "{{ bmc_fw_filename }}"
+        bmc_fw_update_reboot: false
+        bmc_fw_check_field: bmc_firmware
+        bmc_fw_check_value: "{{ fw_version }}"
+
+    - name: Install CEC and reboot
+      import_role:
+        name: bmc_fw_update
+      vars:
+        bmc_fw_update_image_file: "{{ bmc_cec_filename }}"
+        bmc_fw_update_reboot: true
+        bmc_fw_check_field: bluefield_fw_erot
+        bmc_fw_check_value: "{{ cec_version }}"
+
+
+# power cycle servers and wait until they come up
+
+
+- hosts: bfbmcs
+  gather_facts: no
+  tasks:
+    - name: Get fw version after reboot
+      import_role:
+        name: get_bmc_facts
+
+    - name: Print facts
+      ansible.builtin.debug:
+        var: vars.bmc_fw_version
+      delegate_to: localhost
+
+    - name: Store fw version we installed
+      ansible.builtin.set_fact:
+        got_fw_version: "{{ vars.bmc_fw_version['bmc_firmware'] }}"
+
+    - name: Store CEC version we installed
+      ansible.builtin.set_fact:
+        got_cec_version: "{{ vars.bmc_fw_version['bluefield_fw_erot'] }}"
+
+    - name: Validate fw image matches goal
+      ansible.builtin.fail:
+        msg: "FW version {{ got_fw_version }} does not match {{ fw_version }}"
+      when: got_fw_version != fw_version
+
+    - name: Validate cec image matches goal
+      ansible.builtin.fail:
+        msg: "CEC version {{ got_cec_version }} does not match {{ cec_version }}"
+      when: got_cec_version != cec_version
+
+   
+
+

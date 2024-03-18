@@ -4,14 +4,14 @@
 ---
 # tasks file for bmc_fw_update
 
-- name: Get Firmware Inventory
-  ansible.builtin.include_role:
-    name: get_bmc_facts
-  register: get_bmc_facts_before
+#- name: Get Firmware Inventory
+#  ansible.builtin.include_role:
+#    name: get_bmc_facts
+#  register: get_bmc_facts_before
 
-- name: Print BMC Version
-  ansible.builtin.debug:
-    msg: "{{ get_bmc_facts_bmc_firmware }}"
+#- name: Print BMC Version
+#  ansible.builtin.debug:
+#    var: vars.bmc_fw_version
 
 - name: Check if firmware image exists locally {{ bmc_fw_update_image_file }}
   ansible.builtin.stat:
@@ -27,7 +27,7 @@
   delegate_to: localhost
   when: not bmc_fw_update_local_file_check.stat.exists
 
-- name: Update BMC firmware of DPU
+- name: Update BMC firmware of DPU {{ bmc_fw_update_image_file }}
   community.general.redfish_command:
     category: Update
     command: MultipartHTTPPushUpdate
@@ -76,18 +76,22 @@
   when:
     - bmc_fw_update_reboot is true
 
+- name: Get the DPU a chance to restart
+  ansible.builtin.pause:
+    seconds: 120
+  when:
+    - bmc_fw_update_reboot is true
+
 - name: Get Firmware Inventory
   ansible.builtin.include_role:
     name: get_bmc_facts
   register: get_bmc_facts_after
 
-- name: Print BMC Version
-  ansible.builtin.debug:
-    msg: "{{ get_bmc_facts_bmc_firmware }}"
+- name: Store fw version we installed
+  ansible.builtin.set_fact:
+    got_fw_version: "{{ vars.bmc_fw_version[bmc_fw_check_field] }}"
 
-- name: Validate fw image matches given filename
+- name: Validate fw version matches goal
   ansible.builtin.fail:
-    msg: "{{ bmc_fw_update_version_failure }}"
-  when:
-    - bmc_fw_update_reboot is true
-    - not bmc_fw_update_image_file is search(get_bmc_facts_bmc_firmware | regex_search('[0-9-.]+'))
+    msg: "{{ got_fw_version }} does not match {{ bmc_fw_check_value }}"
+  when: got_fw_version != bmc_fw_check_value

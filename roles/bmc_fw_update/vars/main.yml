@@ -5,4 +5,3 @@
 # vars file for bmc_fw_update
 
 bmc_fw_update_task_failure: "Task failed with status: %s"
-bmc_fw_update_version_failure: "Version returned from BMC doesn't match version in the file name"
