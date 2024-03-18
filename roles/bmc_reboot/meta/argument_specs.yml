@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+---
+argument_specs:
+  main:
+    version_added: "1.0.0"
+    short_description: Role to restart DPU BMC
+    description:
+      - Role to restart DPU BMC.
+    options:
+      bmc_reboot_should_wait:
+        description:
+          - Wait for the BMC to restart.
+        type: bool
+        default: true
+      bmc_reboot_wait_timeout:
+        description:
+          - Seconds to wait for the BMC to restart.
+        type: int
+        default: 60
