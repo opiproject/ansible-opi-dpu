@@ -11,7 +11,7 @@
 
 - name: Print BMC Version
   ansible.builtin.debug:
-    msg: "{{ get_bmc_facts_bmc_firmware }}"
+    msg: "{{ get_bmc_facts_all_fw_versions }}"
 
 - name: Check if firmware image exists locally {{ bmc_fw_update_image_file }}
   ansible.builtin.stat:
@@ -83,11 +83,15 @@
 
 - name: Print BMC Version
   ansible.builtin.debug:
-    msg: "{{ get_bmc_facts_bmc_firmware }}"
+    msg: "{{ get_bmc_facts_all_fw_versions }}"
+
+- name: Store fw version we installed
+  ansible.builtin.set_fact:
+    bmc_fw_update_got_fw_version: "{{ vars.get_bmc_facts_all_fw_versions['bmc_firmware'] }}"
 
 - name: Validate fw image matches given filename
   ansible.builtin.fail:
     msg: "{{ bmc_fw_update_version_failure }}"
   when:
     - bmc_fw_update_reboot is true
-    - not bmc_fw_update_image_file is search(get_bmc_facts_bmc_firmware | regex_search('[0-9-.]+'))
+    - not bmc_fw_update_image_file is search(bmc_fw_update_got_fw_version | regex_search('[0-9-.]+'))
