@@ -87,11 +87,11 @@
 
 - name: Store fw version we installed
   ansible.builtin.set_fact:
-    got_fw_version: "{{ vars.get_bmc_facts_all_fw_versions['bmc_firmware'] }}"
+    bmc_fw_update_got_fw_version: "{{ vars.get_bmc_facts_all_fw_versions['bmc_firmware'] }}"
 
 - name: Validate fw image matches given filename
   ansible.builtin.fail:
     msg: "{{ bmc_fw_update_version_failure }}"
   when:
     - bmc_fw_update_reboot is true
-    - not bmc_fw_update_image_file is search(got_fw_version | regex_search('[0-9-.]+'))
+    - not bmc_fw_update_image_file is search(bmc_fw_update_got_fw_version | regex_search('[0-9-.]+'))
