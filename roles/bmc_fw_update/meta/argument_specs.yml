@@ -16,6 +16,11 @@ argument_specs:
           - Packages that do not require a reboot are applied immediately irrespective of I (reboot).
         type: bool
         default: true
+      bmc_fw_update_inventory_name:
+        description:
+          - Inventory component name returned from the server to access via disctionary as key.
+        type: str
+        default: true
       bmc_fw_update_image_url:
         description:
           - URL of the BMC fw image. Ignored if bmc_fw_update_image_file exists.

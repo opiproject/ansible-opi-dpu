@@ -9,6 +9,10 @@
     name: get_bmc_facts
   register: get_bmc_facts_before
 
+- name: Store current fw version
+  ansible.builtin.set_fact:
+    bmc_fw_update_cur_fw_version: "{{ vars.get_bmc_facts_all_fw_versions[bmc_fw_update_inventory_name] }}"
+
 - name: Print BMC Version
   ansible.builtin.debug:
     msg: "{{ get_bmc_facts_all_fw_versions }}"
@@ -87,7 +91,7 @@
 
 - name: Store fw version we installed
   ansible.builtin.set_fact:
-    bmc_fw_update_got_fw_version: "{{ vars.get_bmc_facts_all_fw_versions['bmc_firmware'] }}"
+    bmc_fw_update_got_fw_version: "{{ vars.get_bmc_facts_all_fw_versions[bmc_fw_update_inventory_name] }}"
 
 - name: Validate fw image matches given filename
   ansible.builtin.fail:

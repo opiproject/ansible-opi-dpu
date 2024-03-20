@@ -6,5 +6,6 @@
 
 bmc_fw_update_reboot: true
 bmc_fw_update_job_wait: true
+bmc_fw_update_inventory_name: bmc_firmware
 bmc_fw_update_image_file: /tmp/bf3-bmc-24.01-5_opn.fwpkg
 bmc_fw_update_image_url: https://content.mellanox.com/BlueField/BMC/24.01-5-Jan-2024/{{ bmc_fw_update_image_file | basename }}
