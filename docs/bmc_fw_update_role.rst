@@ -160,6 +160,47 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_inventory_name"></div>
+
+      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_inventory_name:
+
+      .. rst-class:: ansible-option-title
+
+      **bmc_fw_update_inventory_name**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--bmc_fw_update_inventory_name" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Inventory component name returned from the server to access via disctionary as key.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-default-bold:`Default:` :ansible-option-default:`"True"`
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_job_wait"></div>
 
       .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_job_wait:
