@@ -16,5 +16,5 @@
 
 - name: Extract all FW versions to facts
   ansible.builtin.set_fact:
-    get_bmc_facts_all_fw_versions: "{{ get_bmc_facts_all_fw_versions | default({}) | combine({item['Id'] | lower: item['Version']}) }}
+    get_bmc_facts_all_fw_versions: "{{ get_bmc_facts_all_fw_versions | default({}) | combine({item['Id'] | lower: item['Version']}) }}"
   loop: "{{ result.redfish_facts.firmware.entries }}"
