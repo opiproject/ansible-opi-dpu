@@ -78,6 +78,43 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--auth_token"></div>
+
+      .. _ansible_collections.opi.dpu.bmc_reboot_role__parameter-main__auth_token:
+
+      .. rst-class:: ansible-option-title
+
+      **auth_token**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--auth_token" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      Security token for authentication with DPU BMC.
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--hostname"></div>
 
       .. _ansible_collections.opi.dpu.bmc_reboot_role__parameter-main__hostname:

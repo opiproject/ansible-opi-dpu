@@ -20,6 +20,10 @@ argument_specs:
         type: str
         description:
           - DPU BMC user password.
+      auth_token:
+        type: str
+        description:
+          - Security token for authentication with DPU BMC.
       https_port:
         type: int
         description:
