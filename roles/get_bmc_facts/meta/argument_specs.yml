@@ -9,7 +9,6 @@ argument_specs:
       - This role Gathers facts about DPU BMC software and firmware Inventory.
     options:
       hostname:
-        required: true
         type: str
         description:
           - DPU BMC IP Address.

@@ -9,7 +9,6 @@ argument_specs:
       - Update the Firmware of the DPU BMC from URL or local file.
     options:
       hostname:
-        required: true
         type: str
         description:
           - DPU BMC IP Address.

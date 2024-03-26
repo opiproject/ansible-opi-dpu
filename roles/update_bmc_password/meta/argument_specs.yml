@@ -9,7 +9,6 @@ argument_specs:
       - Update Password of DPU BMC for a given user.
     options:
       hostname:
-        required: true
         type: str
         description:
           - DPU BMC IP Address.

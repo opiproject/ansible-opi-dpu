@@ -294,6 +294,158 @@ Parameters
 
         </div>
 
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--hostname"></div>
+
+      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__hostname:
+
+      .. rst-class:: ansible-option-title
+
+      **hostname**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--hostname" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      DPU BMC IP Address.
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--https_port"></div>
+
+      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__https_port:
+
+      .. rst-class:: ansible-option-title
+
+      **https_port**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--https_port" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`integer`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      DPU BMC port.
+
+
+      .. rst-class:: ansible-option-line
+
+      :ansible-option-default-bold:`Default:` :ansible-option-default:`443`
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--password"></div>
+
+      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__password:
+
+      .. rst-class:: ansible-option-title
+
+      **password**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--password" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      DPU BMC user password.
+
+
+      .. raw:: html
+
+        </div>
+
+  * - .. raw:: html
+
+        <div class="ansible-option-cell">
+        <div class="ansibleOptionAnchor" id="parameter-main--username"></div>
+
+      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__username:
+
+      .. rst-class:: ansible-option-title
+
+      **username**
+
+      .. raw:: html
+
+        <a class="ansibleOptionLink" href="#parameter-main--username" title="Permalink to this option"></a>
+
+      .. ansible-option-type-line::
+
+        :ansible-option-type:`string`
+
+
+
+
+      .. raw:: html
+
+        </div>
+
+    - .. raw:: html
+
+        <div class="ansible-option-cell">
+
+      DPU BMC username.
+
+
+      .. raw:: html
+
+        </div>
+
 
 .. Attributes
 

@@ -9,7 +9,6 @@ argument_specs:
       - This role enables DPU secure boot.
     options:
       hostname:
-        required: true
         type: str
         description:
           - DPU BMC IP Address.

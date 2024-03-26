@@ -9,7 +9,6 @@ argument_specs:
       - Role to manage (create and delete) the DPU BMC authentication session.
     options:
       hostname:
-        required: true
         type: str
         description:
           - DPU BMC IP Address.

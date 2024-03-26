@@ -9,7 +9,6 @@ argument_specs:
       - Reset all states of the DPU BMC to factory defaults.
     options:
       hostname:
-        required: true
         type: str
         description:
           - DPU BMC IP Address.
