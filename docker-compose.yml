@@ -41,7 +41,7 @@ services:
     volumes:
       - ./:/opt/
     working_dir: /opt/roles
-    command: ["bmc", "--module-name", "include_role", "--args", "name=get_bmc_facts", "-vvv", "-i", "bmc,",
+    command: ["all", "--module-name", "include_role", "--args", "name=get_bmc_facts", "-vvv", "-i", "bmc,",
               "-e", "dpu_bmc_username='root'", "-e", "dpu_bmc_password='123456'"]
 
 networks:

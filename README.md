@@ -37,7 +37,7 @@ See [CONTRIBUTING](https://github.com/opiproject/opi/blob/main/CONTRIBUTING.md) 
 using docker
 
 ```bash
-docker run --rm -it ghcr.io/opiproject/ansible-opi-dpu:main 10.10.10.1 --module-name include_role --args name=bmc_fw_update -vvv -i "10.10.10.1," -e dpu_bmc_username='root' -e dpu_bmc_password='123456'
+docker run --rm -it ghcr.io/opiproject/ansible-opi-dpu:main all --module-name include_role --args name=bmc_fw_update -vvv -i "10.10.10.1," -e dpu_bmc_username='root' -e dpu_bmc_password='123456'
 or
 docker run --rm -it --entrypoint ansible-playbook ghcr.io/opiproject/ansible-opi-dpu:main ../playbooks/firmware.yml -vvv -i "10.10.10.1," -e dpu_bmc_username='root' -e dpu_bmc_password='123456'
 or
