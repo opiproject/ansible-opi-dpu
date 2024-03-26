@@ -11,12 +11,12 @@
 
 .. Anchors
 
-.. _ansible_collections.opi.dpu.update_bmc_password_role:
+.. _ansible_collections.opi.dpu.bmc_factory_reset_role:
 
 .. Title
 
-opi.dpu.update_bmc_password role -- Update Password of DPU BMC for a given user.
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+opi.dpu.bmc_factory_reset role -- Factory reset of DPU BMC
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
@@ -28,7 +28,7 @@ opi.dpu.update_bmc_password role -- Update Password of DPU BMC for a given user.
 
     To install it use: :code:`ansible-galaxy collection install opi.dpu`.
 
-    To use it in a playbook, specify: :code:`opi.dpu.update_bmc_password`.
+    To use it in a playbook, specify: :code:`opi.dpu.bmc_factory_reset`.
 
 .. contents::
    :local:
@@ -37,8 +37,8 @@ opi.dpu.update_bmc_password role -- Update Password of DPU BMC for a given user.
 
 .. Entry point title
 
-Entry point ``main`` -- Update Password of DPU BMC for a given user.
---------------------------------------------------------------------
+Entry point ``main`` -- Factory reset of DPU BMC
+------------------------------------------------
 
 .. version_added
 
@@ -54,7 +54,7 @@ Synopsis
 
 .. Description
 
-- Update Password of DPU BMC for a given user.
+- Reset all states of the DPU BMC to factory defaults.
 
 .. Requirements
 
@@ -80,7 +80,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--hostname"></div>
 
-      .. _ansible_collections.opi.dpu.update_bmc_password_role__parameter-main__hostname:
+      .. _ansible_collections.opi.dpu.bmc_factory_reset_role__parameter-main__hostname:
 
       .. rst-class:: ansible-option-title
 
@@ -117,7 +117,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--https_port"></div>
 
-      .. _ansible_collections.opi.dpu.update_bmc_password_role__parameter-main__https_port:
+      .. _ansible_collections.opi.dpu.bmc_factory_reset_role__parameter-main__https_port:
 
       .. rst-class:: ansible-option-title
 
@@ -158,7 +158,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--password"></div>
 
-      .. _ansible_collections.opi.dpu.update_bmc_password_role__parameter-main__password:
+      .. _ansible_collections.opi.dpu.bmc_factory_reset_role__parameter-main__password:
 
       .. rst-class:: ansible-option-title
 
@@ -193,83 +193,9 @@ Parameters
   * - .. raw:: html
 
         <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-main--update_bmc_password_login_name"></div>
-
-      .. _ansible_collections.opi.dpu.update_bmc_password_role__parameter-main__update_bmc_password_login_name:
-
-      .. rst-class:: ansible-option-title
-
-      **update_bmc_password_login_name**
-
-      .. raw:: html
-
-        <a class="ansibleOptionLink" href="#parameter-main--update_bmc_password_login_name" title="Permalink to this option"></a>
-
-      .. ansible-option-type-line::
-
-        :ansible-option-type:`string`
-
-
-
-
-      .. raw:: html
-
-        </div>
-
-    - .. raw:: html
-
-        <div class="ansible-option-cell">
-
-      DPU BMC username to change.
-
-
-      .. raw:: html
-
-        </div>
-
-  * - .. raw:: html
-
-        <div class="ansible-option-cell">
-        <div class="ansibleOptionAnchor" id="parameter-main--update_bmc_password_new_pass"></div>
-
-      .. _ansible_collections.opi.dpu.update_bmc_password_role__parameter-main__update_bmc_password_new_pass:
-
-      .. rst-class:: ansible-option-title
-
-      **update_bmc_password_new_pass**
-
-      .. raw:: html
-
-        <a class="ansibleOptionLink" href="#parameter-main--update_bmc_password_new_pass" title="Permalink to this option"></a>
-
-      .. ansible-option-type-line::
-
-        :ansible-option-type:`string`
-
-
-
-
-      .. raw:: html
-
-        </div>
-
-    - .. raw:: html
-
-        <div class="ansible-option-cell">
-
-      DPU BMC new password to apply for the given user.
-
-
-      .. raw:: html
-
-        </div>
-
-  * - .. raw:: html
-
-        <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--username"></div>
 
-      .. _ansible_collections.opi.dpu.update_bmc_password_role__parameter-main__username:
+      .. _ansible_collections.opi.dpu.bmc_factory_reset_role__parameter-main__username:
 
       .. rst-class:: ansible-option-title
 

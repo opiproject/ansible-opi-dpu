@@ -9,7 +9,6 @@ argument_specs:
       - Role to reset and restart DPU BMC.
     options:
       hostname:
-        required: true
         type: str
         description:
           - DPU BMC IP Address.

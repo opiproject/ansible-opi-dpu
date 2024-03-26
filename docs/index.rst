@@ -55,13 +55,23 @@ Role Index
 
 These are the roles in the opi.dpu collection:
 
+* :ansplugin:`bmc_factory_reset role <opi.dpu.bmc_factory_reset#role>` -- Factory reset of DPU BMC
 * :ansplugin:`bmc_fw_update role <opi.dpu.bmc_fw_update#role>` -- Firmware update of DPU BMC
+* :ansplugin:`bmc_reboot role <opi.dpu.bmc_reboot#role>` -- Role to reset and restart DPU BMC
+* :ansplugin:`bmc_session role <opi.dpu.bmc_session#role>` -- Role to manage DPU BMC session
+* :ansplugin:`enable_secure_boot role <opi.dpu.enable_secure_boot#role>` -- Enable DPU secure boot
+* :ansplugin:`get_bmc_facts role <opi.dpu.get_bmc_facts#role>` -- Gathers facts about DPU BMC Inventory.
 * :ansplugin:`update_bmc_password role <opi.dpu.update_bmc_password#role>` -- Update Password of DPU BMC for a given user.
 
 .. toctree::
     :maxdepth: 1
     :hidden:
 
+    bmc_factory_reset_role
     bmc_fw_update_role
+    bmc_reboot_role
+    bmc_session_role
+    enable_secure_boot_role
+    get_bmc_facts_role
     update_bmc_password_role
 
