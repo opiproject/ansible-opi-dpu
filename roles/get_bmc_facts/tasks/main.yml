@@ -11,6 +11,7 @@
     baseuri: "{{ inventory_hostname }}"
     username: "{{ dpu_bmc_username }}"
     password: "{{ dpu_bmc_password }}"
+    #auth_token: "{{ dpu_bmc_token }}"
   register: result
   delegate_to: localhost
 

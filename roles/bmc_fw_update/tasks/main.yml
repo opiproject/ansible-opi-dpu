@@ -38,6 +38,7 @@
     baseuri: "{{ inventory_hostname }}"
     username: "{{ dpu_bmc_username }}"
     password: "{{ dpu_bmc_password }}"
+    #auth_token: "{{ dpu_bmc_token }}"
     timeout: 600
     update_image_file: "{{ bmc_fw_update_image_file }}"
   register: result_update_task
@@ -62,6 +63,7 @@
     baseuri: "{{ inventory_hostname }}"
     username: "{{ dpu_bmc_username }}"
     password: "{{ dpu_bmc_password }}"
+    #auth_token: "{{ dpu_bmc_token }}"
     update_handle: "{{ result_update_task.return_values.update_status.handle }}"
   register: update_progress
   until: update_progress.redfish_facts.update_status.status != 'Running'
