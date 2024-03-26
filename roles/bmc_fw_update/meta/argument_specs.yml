@@ -8,6 +8,24 @@ argument_specs:
     description:
       - Update the Firmware of the DPU BMC from URL or local file.
     options:
+      hostname:
+        required: true
+        type: str
+        description:
+          - DPU BMC IP Address.
+      username:
+        type: str
+        description:
+          - DPU BMC username.
+      password:
+        type: str
+        description:
+          - DPU BMC user password.
+      https_port:
+        type: int
+        description:
+          - DPU BMC port.
+        default: 443
       bmc_fw_update_reboot:
         description:
           - Provides the option to apply the update packages immediately or in the next reboot.

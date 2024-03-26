@@ -4,9 +4,9 @@
 argument_specs:
   main:
     version_added: "1.0.0"
-    short_description: Update Password of DPU BMC for a given user.
+    short_description: Role to manage DPU BMC session
     description:
-      - Update Password of DPU BMC for a given user.
+      - Role to manage (create and delete) the DPU BMC authentication session.
     options:
       hostname:
         required: true
@@ -26,9 +26,3 @@ argument_specs:
         description:
           - DPU BMC port.
         default: 443
-      update_bmc_password_login_name:
-        type: str
-        description: DPU BMC username to change.
-      update_bmc_password_new_pass:
-        type: str
-        description: DPU BMC new password to apply for the given user.
