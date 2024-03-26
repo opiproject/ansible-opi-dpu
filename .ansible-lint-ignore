@@ -1,1 +1,7 @@
-roles/get_bmc_facts/tasks/main.yml var-naming[no-jinja]
+roles/bmc_factory_reset/defaults/main.yml var-naming[no-role-prefix]
+roles/bmc_fw_update/defaults/main.yml var-naming[no-role-prefix]
+roles/bmc_reboot/defaults/main.yml var-naming[no-role-prefix]
+roles/bmc_session/defaults/main.yml var-naming[no-role-prefix]
+roles/enable_secure_boot/defaults/main.yml var-naming[no-role-prefix]
+roles/get_bmc_facts/defaults/main.yml var-naming[no-role-prefix]
+roles/update_bmc_password/defaults/main.yml var-naming[no-role-prefix]

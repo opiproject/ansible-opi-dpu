@@ -1,2 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+
 ---
 # defaults file for bmc_factory_reset
+
+https_port: 443
