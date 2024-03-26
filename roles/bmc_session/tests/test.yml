@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: DPU BMC session management
+  hosts: localhost
   remote_user: root
   roles:
     - bmc_session
