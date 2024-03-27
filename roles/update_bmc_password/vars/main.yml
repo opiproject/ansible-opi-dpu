@@ -1,2 +1,7 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+
 ---
 # vars file for update_bmc_password
+
+update_bmc_password_delegate: "{{ lookup('ansible.builtin.env', 'RUNON', default='localhost') }}"

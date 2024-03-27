@@ -6,3 +6,4 @@
 
 bmc_fw_update_task_failure: "Task failed with status: %s"
 bmc_fw_update_version_failure: "Version returned from BMC doesn't match version in the file name"
+bmc_fw_update_delegate: "{{ lookup('ansible.builtin.env', 'RUNON', default='localhost') }}"
