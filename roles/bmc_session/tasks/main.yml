@@ -8,7 +8,7 @@
     baseuri: "{{ inventory_hostname }}"
     username: "{{ dpu_bmc_username }}"
     password: "{{ dpu_bmc_password }}"
-  delegate_to: localhost
+  delegate_to: "{{ bmc_session_delegate }}"
   register: result
 
 - name: Extract session details from login result
@@ -29,4 +29,4 @@
     baseuri: "{{ inventory_hostname }}"
     auth_token: "{{ bmc_session_token }}"
     session_uri: "{{ bmc_session_uri }}"
-  delegate_to: localhost
+  delegate_to: "{{ bmc_session_delegate }}"

@@ -14,4 +14,4 @@
     # auth_token: "{{ dpu_bmc_token }}"
     account_username: "{{ update_bmc_password_login_name }}"
     account_password: "{{ update_bmc_password_new_pass }}"
-  delegate_to: localhost
+  delegate_to: "{{ update_bmc_password_delegate }}"

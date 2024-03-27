@@ -13,7 +13,7 @@
     password: "{{ dpu_bmc_password }}"
     # auth_token: "{{ dpu_bmc_token }}"
   register: result
-  delegate_to: localhost
+  delegate_to: "{{ get_bmc_facts_delegate }}"
 
 - name: Extract all FW versions to facts
   ansible.builtin.set_fact:

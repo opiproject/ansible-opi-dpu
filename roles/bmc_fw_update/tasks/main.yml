@@ -20,7 +20,7 @@
 - name: Check if firmware image exists locally {{ bmc_fw_update_image_file }}
   ansible.builtin.stat:
     path: "{{ bmc_fw_update_image_file }}"
-  delegate_to: localhost
+  delegate_to: "{{ bmc_fw_update_delegate }}"
   register: bmc_fw_update_local_file_check
 
 - name: Download firmware image {{ bmc_fw_update_image_url }}
@@ -28,7 +28,7 @@
     url: "{{ bmc_fw_update_image_url }}"
     dest: "{{ bmc_fw_update_image_file }}"
     mode: '0440'
-  delegate_to: localhost
+  delegate_to: "{{ bmc_fw_update_delegate }}"
   when: not bmc_fw_update_local_file_check.stat.exists
 
 - name: Update BMC firmware of DPU
@@ -42,7 +42,7 @@
     timeout: 600
     update_image_file: "{{ bmc_fw_update_image_file }}"
   register: result_update_task
-  delegate_to: localhost
+  delegate_to: "{{ bmc_fw_update_delegate }}"
 
 - name: Extract task id from update task
   ansible.builtin.set_fact:
@@ -69,7 +69,7 @@
   until: update_progress.redfish_facts.update_status.status != 'Running'
   retries: 60
   delay: 30
-  delegate_to: localhost
+  delegate_to: "{{ bmc_fw_update_delegate }}"
 
 - name: Validate task was completed
   ansible.builtin.fail:
