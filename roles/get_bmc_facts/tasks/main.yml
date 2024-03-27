@@ -4,18 +4,53 @@
 ---
 # tasks file for get_bmc_facts
 
-- name: Get Firmware Inventory
-  community.general.redfish_info:
-    category: Update
-    command: GetFirmwareInventory
-    baseuri: "{{ inventory_hostname }}"
-    username: "{{ dpu_bmc_username }}"
-    password: "{{ dpu_bmc_password }}"
-    # auth_token: "{{ dpu_bmc_token }}"
-  register: result
-  delegate_to: "{{ get_bmc_facts_delegate }}"
+- name: Validate server authentication input provided by user
+  ansible.builtin.fail:
+    msg: "{{ get_bmc_facts_mandatory_msg }}"
+  when:
+    - (dpu_bmc_username is not defined or dpu_bmc_password is not defined) and (dpu_bmc_token is not defined)
 
-- name: Extract all FW versions to facts
-  ansible.builtin.set_fact:
-    get_bmc_facts_all_fw_versions: "{{ get_bmc_facts_all_fw_versions | default({}) | combine({item['Id'] | lower: item['Version']}) }}"
-  loop: "{{ result.redfish_facts.firmware.entries }}"
+- name: Fail when more than one valid authentication method is provided
+  ansible.builtin.fail:
+    msg: "{{ get_bmc_facts_mutual_exclusive_msg }}"
+  when:
+    - ((dpu_bmc_username is defined or dpu_bmc_password is defined) and dpu_bmc_token is defined)
+
+- name: Get Firmware Inventory when username and password are defined
+  when: dpu_bmc_username is defined and dpu_bmc_password is defined
+  block:
+    - name: Get Firmware Inventory
+      community.general.redfish_info:
+        category: Update
+        command: GetFirmwareInventory
+        baseuri: "{{ inventory_hostname }}"
+        username: "{{ dpu_bmc_username }}"
+        password: "{{ dpu_bmc_password }}"
+      register: result
+      delegate_to: "{{ get_bmc_facts_delegate }}"
+
+    - name: Extract all FW versions to facts
+      ansible.builtin.set_fact:
+        get_bmc_facts_all_fw_versions: "{{ get_bmc_facts_all_fw_versions | default({}) | combine({item['Id'] | lower: item['Version']}) }}"
+      loop: "{{ result.redfish_facts.firmware.entries }}"
+
+- name: Get Firmware Inventory when auth_token is defined
+  when: dpu_bmc_token is defined
+  block:
+    - name: Get Firmware Inventory
+      community.general.redfish_info:
+        category: Update
+        command: GetFirmwareInventory
+        baseuri: "{{ inventory_hostname }}"
+        auth_token: "{{ dpu_bmc_token }}"
+      register: result
+      delegate_to: "{{ get_bmc_facts_delegate }}"
+
+    - name: Extract all FW versions to facts
+      ansible.builtin.set_fact:
+        get_bmc_facts_all_fw_versions: "{{ get_bmc_facts_all_fw_versions | default({}) | combine({item['Id'] | lower: item['Version']}) }}"
+      loop: "{{ result.redfish_facts.firmware.entries }}"
+
+- name: Print all Versions
+  ansible.builtin.debug:
+    msg: "{{ get_bmc_facts_all_fw_versions }}"

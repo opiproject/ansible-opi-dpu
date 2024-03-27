@@ -5,3 +5,5 @@
 # vars file for get_bmc_facts
 
 get_bmc_facts_delegate: "{{ lookup('ansible.builtin.env', 'RUNON', default='localhost') }}"
+get_bmc_facts_mandatory_msg: "username/password or auth_token is mandatory"
+get_bmc_facts_mutual_exclusive_msg: "Only one authentication method is allowed. Provide either username/password or auth_token."
