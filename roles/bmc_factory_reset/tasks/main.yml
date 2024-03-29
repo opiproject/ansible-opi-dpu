@@ -23,10 +23,11 @@
     - name: Factory reset BMC when username and password are defined
       community.general.redfish_command:
         category: Manager
-        command: GracefulRestart
+        command: ResetToDefaults
         baseuri: "{{ inventory_hostname }}"
         username: "{{ dpu_bmc_username }}"
         password: "{{ dpu_bmc_password }}"
+        reset_to_defaults_mode: ResetAll
 
 - name: Factory reset BMC when auth_token is defined
   when: dpu_bmc_token is defined
@@ -35,6 +36,7 @@
     - name: Factory reset BMC when auth_token is defined
       community.general.redfish_command:
         category: Manager
-        command: GracefulRestart
+        command: ResetToDefaults
         baseuri: "{{ inventory_hostname }}"
         auth_token: "{{ dpu_bmc_token }}"
+        reset_to_defaults_mode: ResetAll
