@@ -5,3 +5,5 @@
 # vars file for bmc_reboot
 
 bmc_reboot_delegate: "{{ lookup('ansible.builtin.env', 'RUNON', default='localhost') }}"
+bmc_reboot_mandatory_msg: "username/password or auth_token is mandatory"
+bmc_reboot_mutual_exclusive_msg: "Only one authentication method is allowed. Provide either username/password or auth_token."
