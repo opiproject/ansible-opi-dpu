@@ -5,3 +5,5 @@
 # vars file for update_bmc_password
 
 update_bmc_password_delegate: "{{ lookup('ansible.builtin.env', 'RUNON', default='localhost') }}"
+update_bmc_password_mandatory_msg: "username/password or auth_token is mandatory"
+update_bmc_password_mutual_exclusive_msg: "Only one authentication method is allowed. Provide either username/password or auth_token."
