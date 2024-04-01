@@ -5,3 +5,5 @@
 # vars file for enable_secure_boot
 
 enable_secure_boot_delegate: "{{ lookup('ansible.builtin.env', 'RUNON', default='localhost') }}"
+enable_secure_boot_mandatory_msg: "username/password or auth_token is mandatory"
+enable_secure_boot_mutual_exclusive_msg: "Only one authentication method is allowed. Provide either username/password or auth_token."
