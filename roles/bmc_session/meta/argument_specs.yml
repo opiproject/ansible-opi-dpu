@@ -33,5 +33,5 @@ argument_specs:
         description:
           - Whether to Create (C(present) or C(installed), C(latest)), or Delete (C(absent) or C(removed)) a session.
         required: false
-        choices: [ "present", "installed", "latest", "absent", "removed" ]
+        choices: ["present", "installed", "latest", "absent", "removed"]
         default: "present"
