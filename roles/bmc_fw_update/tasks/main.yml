@@ -31,7 +31,45 @@
   delegate_to: "{{ bmc_fw_update_delegate }}"
   when: not bmc_fw_update_local_file_check.stat.exists
 
+# Consider replace with 'GetFirmwareUpdateCapabilities' when available
+- name: Check multipart support
+  ansible.builtin.uri:
+    url: "https://{{ inventory_hostname }}/redfish/v1/UpdateService"
+    method: GET
+    return_content: true
+    status_code: 200
+    body_format: json
+    url_username: "{{ dpu_bmc_username }}"
+    url_password: "{{ dpu_bmc_password }}"
+    force_basic_auth: true
+    validate_certs: false
+  delegate_to: "{{ bmc_fw_update_delegate }}"
+  register: bmc_fw_update_multipart_check
+
+# Deprecated method
+- name: Update BMC firmware of DPU using deprecated HttpPushUri
+  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is not defined
+  ansible.builtin.uri:
+    url: "https://{{ inventory_hostname }}{{ bmc_fw_update_multipart_check.json.HttpPushUri }}"
+    method: POST
+    status_code: [200, 202]
+    src: "{{ bmc_fw_update_image_file }}"
+    headers:
+      Content-Type: application/octet-stream
+    url_username: "{{ dpu_bmc_username }}"
+    url_password: "{{ dpu_bmc_password }}"
+    force_basic_auth: true
+    validate_certs: false
+  delegate_to: "{{ bmc_fw_update_delegate }}"
+  register: bmc_fw_update_depecated_http_push
+
+- name: Extract task id from update task
+  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is not defined
+  ansible.builtin.set_fact:
+    bmc_firmware_update_taskid: '{{ bmc_fw_update_depecated_http_push.location | urlsplit("path") }}'
+
 - name: Update BMC firmware of DPU
+  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is defined
   community.general.redfish_command:
     category: Update
     command: MultipartHTTPPushUpdate
@@ -45,12 +83,13 @@
   delegate_to: "{{ bmc_fw_update_delegate }}"
 
 - name: Extract task id from update task
+  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is defined
   ansible.builtin.set_fact:
     bmc_firmware_update_taskid: "{{ result_update_task.return_values.update_status.handle }}"
 
 - name: Print TASK id for tracking
   ansible.builtin.debug:
-    msg: "{{ result_update_task.return_values.update_status.handle }}"
+    msg: "{{ bmc_firmware_update_taskid }}"
 
 - name: Pause for 10 seconds for BMC to start task
   ansible.builtin.pause:
@@ -65,7 +104,7 @@
     username: "{{ dpu_bmc_username }}"
     password: "{{ dpu_bmc_password }}"
     # auth_token: "{{ dpu_bmc_token }}"
-    update_handle: "{{ result_update_task.return_values.update_status.handle }}"
+    update_handle: "{{ bmc_firmware_update_taskid }}"
   register: update_progress
   until: update_progress.redfish_facts.update_status.status != 'Running'
   retries: 60
