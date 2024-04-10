@@ -4,6 +4,18 @@
 ---
 # tasks file for bmc_fw_update
 
+- name: Validate server authentication input provided by user
+  ansible.builtin.fail:
+    msg: "{{ bmc_fw_update_mandatory_msg }}"
+  when:
+    - (dpu_bmc_username is not defined or dpu_bmc_password is not defined) and (dpu_bmc_token is not defined)
+
+- name: Fail when more than one valid authentication method is provided
+  ansible.builtin.fail:
+    msg: "{{ bmc_fw_update_mutual_exclusive_msg }}"
+  when:
+    - ((dpu_bmc_username is defined or dpu_bmc_password is defined) and dpu_bmc_token is defined)
+
 - name: Get Firmware Inventory
   ansible.builtin.include_role:
     name: get_bmc_facts
