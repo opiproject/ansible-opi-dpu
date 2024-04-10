@@ -53,5 +53,3 @@ docker run --rm -it --entrypoint ansible-playbook ghcr.io/opiproject/ansible-opi
 or
 docker run --rm -it --entrypoint ansible-playbook -v $(pwd):/opt -w /opt/roles ghcr.io/opiproject/ansible-opi-dpu:main ../playbooks/firmware.yml -vvv -i "10.10.10.1," -e dpu_bmc_token='QVEqXaooTXAiMNvjqSiI'
 ```
-
-
