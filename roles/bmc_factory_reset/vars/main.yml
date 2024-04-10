@@ -5,3 +5,5 @@
 # vars file for bmc_factory_reset
 
 bmc_factory_reset_delegate: "{{ lookup('ansible.builtin.env', 'RUNON', default='localhost') }}"
+bmc_factory_reset_mandatory_msg: "username/password or auth_token is mandatory"
+bmc_factory_reset_mutual_exclusive_msg: "Only one authentication method is allowed. Provide either username/password or auth_token."
