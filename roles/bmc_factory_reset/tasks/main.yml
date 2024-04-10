@@ -1,2 +1,40 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2022-2024 Dell Inc, or its subsidiaries.
+
 ---
 # tasks file for bmc_factory_reset
+
+- name: Validate server authentication input provided by user
+  ansible.builtin.fail:
+    msg: "{{ bmc_factory_reset_mandatory_msg }}"
+  when:
+    - (dpu_bmc_username is not defined or dpu_bmc_password is not defined) and (dpu_bmc_token is not defined)
+
+- name: Fail when more than one valid authentication method is provided
+  ansible.builtin.fail:
+    msg: "{{ bmc_factory_reset_mutual_exclusive_msg }}"
+  when:
+    - ((dpu_bmc_username is defined or dpu_bmc_password is defined) and dpu_bmc_token is defined)
+
+- name: Factory reset BMC when username and password are defined
+  when: dpu_bmc_username is defined and dpu_bmc_password is defined
+  block:
+    - name: Reset DPU BMC to default factory settings
+      community.general.redfish_command:
+        category: Manager
+        command: GracefulRestart
+        baseuri: "{{ inventory_hostname }}"
+        username: "{{ dpu_bmc_username }}"
+        password: "{{ dpu_bmc_password }}"
+      delegate_to: "{{ bmc_factory_reset_delegate }}"
+
+- name: Factory reset BMC when auth_token is defined
+  when: dpu_bmc_token is defined
+  block:
+    - name: Reset DPU BMC to default factory settings
+      community.general.redfish_command:
+        category: Manager
+        command: GracefulRestart
+        baseuri: "{{ inventory_hostname }}"
+        auth_token: "{{ dpu_bmc_token }}"
+      delegate_to: "{{ bmc_factory_reset_delegate }}"
