@@ -19,7 +19,7 @@
 - name: Get Firmware Inventory when username and password are defined
   when: dpu_bmc_username is defined and dpu_bmc_password is defined
   block:
-    - name: Get Firmware Inventory
+    - name: Get Firmware Inventory when username and password are defined
       community.general.redfish_info:
         category: Update
         command: GetFirmwareInventory
@@ -37,7 +37,7 @@
 - name: Get Firmware Inventory when auth_token is defined
   when: dpu_bmc_token is defined
   block:
-    - name: Get Firmware Inventory
+    - name: Get Firmware Inventory when auth_token is defined
       community.general.redfish_info:
         category: Update
         command: GetFirmwareInventory

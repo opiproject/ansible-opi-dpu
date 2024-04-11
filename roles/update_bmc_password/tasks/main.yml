@@ -19,7 +19,7 @@
 - name: Update user password when username and password are defined
   when: dpu_bmc_username is defined and dpu_bmc_password is defined
   block:
-    - name: Update user password
+    - name: Update user password when username and password are defined
       community.general.redfish_command:
         category: Accounts
         command: UpdateUserPassword
@@ -33,7 +33,7 @@
 - name: Update user password when auth_token is defined
   when: dpu_bmc_token is defined
   block:
-    - name: Update user password
+    - name: Update user password when auth_token is defined
       community.general.redfish_command:
         category: Accounts
         command: UpdateUserPassword
