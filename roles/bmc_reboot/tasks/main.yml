@@ -19,7 +19,7 @@
 - name: Reboot BMC when username and password are defined
   when: dpu_bmc_username is defined and dpu_bmc_password is defined
   block:
-    - name: Reboot BMC to apply new firmware of DPU
+    - name: Reboot BMC when username and password are defined
       community.general.redfish_command:
         category: Manager
         command: GracefulRestart
@@ -35,7 +35,7 @@
 - name: Reboot BMC when auth_token is defined
   when: dpu_bmc_token is defined
   block:
-    - name: Reboot BMC to apply new firmware of DPU
+    - name: Reboot BMC when auth_token is defined
       community.general.redfish_command:
         category: Manager
         command: GracefulRestart
