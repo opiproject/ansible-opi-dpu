@@ -19,7 +19,7 @@
 - name: Enable SecureBoot when username and password are defined
   when: dpu_bmc_username is defined and dpu_bmc_password is defined
   block:
-    - name: Enable SecureBoot
+    - name: Enable SecureBoot when username and password are defined
       community.general.redfish_config:
         category: Systems
         command: EnableSecureBoot
@@ -31,7 +31,7 @@
 - name: Enable SecureBoot when auth_token is defined
   when: dpu_bmc_token is defined
   block:
-    - name: Enable SecureBoot
+    - name: Enable SecureBoot when auth_token is defined
       community.general.redfish_config:
         category: Systems
         command: EnableSecureBoot
