@@ -10,4 +10,6 @@ on:
 jobs:
   call:
     uses: opiproject/actions/.github/workflows/linters.yml@main
+    with:
+      with_golang: false
     secrets: inherit
