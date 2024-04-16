@@ -13,7 +13,13 @@ jobs:
 
   release-galaxy:
     runs-on: ubuntu-latest  
+    #needs: [build]
     steps:
-      - uses: ansible/ansible-publish-action@1.0.0
+      - name: Download migrated collection artifacts
+        uses: actions/download-artifact@v1
         with:
-          api_key: ${{ secrets.GALAXY_API_KEY }}
+          name: collection
+          path: .cache/collection-tarballs
+      - name: Deploy Ansible collection to Galaxy
+        run: ansible-galaxy collection publish .cache/collection-tarballs/*.tar.gz --api-key ${{ secrets.GALAXY_API_KEY }}
+
