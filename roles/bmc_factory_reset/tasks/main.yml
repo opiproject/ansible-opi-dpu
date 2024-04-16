@@ -18,6 +18,7 @@
 
 - name: Factory reset BMC when username and password are defined
   when: dpu_bmc_username is defined and dpu_bmc_password is defined
+  delegate_to: "{{ bmc_factory_reset_delegate }}"
   block:
     - name: Factory reset BMC when username and password are defined
       community.general.redfish_command:
@@ -26,10 +27,10 @@
         baseuri: "{{ inventory_hostname }}"
         username: "{{ dpu_bmc_username }}"
         password: "{{ dpu_bmc_password }}"
-      delegate_to: "{{ bmc_factory_reset_delegate }}"
 
 - name: Factory reset BMC when auth_token is defined
   when: dpu_bmc_token is defined
+  delegate_to: "{{ bmc_factory_reset_delegate }}"
   block:
     - name: Factory reset BMC when auth_token is defined
       community.general.redfish_command:
@@ -37,4 +38,3 @@
         command: GracefulRestart
         baseuri: "{{ inventory_hostname }}"
         auth_token: "{{ dpu_bmc_token }}"
-      delegate_to: "{{ bmc_factory_reset_delegate }}"
