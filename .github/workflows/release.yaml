@@ -11,9 +11,13 @@ jobs:
     uses: ./.github/workflows/docker-publish.yml
     secrets: inherit
 
+  build-galaxy:
+    uses: ./.github/workflows/ansible.yml
+    secrets: inherit
+
   release-galaxy:
     runs-on: ubuntu-latest  
-    #needs: [build]
+    needs: [build-galaxy]
     steps:
       - name: Download migrated collection artifacts
         uses: actions/download-artifact@v1
