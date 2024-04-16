@@ -18,6 +18,7 @@
 
 - name: Update user password when username and password are defined
   when: dpu_bmc_username is defined and dpu_bmc_password is defined
+  delegate_to: "{{ update_bmc_password_delegate }}"
   block:
     - name: Update user password when username and password are defined
       community.general.redfish_command:
@@ -28,10 +29,10 @@
         password: "{{ dpu_bmc_password }}"
         account_username: "{{ update_bmc_password_login_name }}"
         account_password: "{{ update_bmc_password_new_pass }}"
-      delegate_to: "{{ update_bmc_password_delegate }}"
 
 - name: Update user password when auth_token is defined
   when: dpu_bmc_token is defined
+  delegate_to: "{{ update_bmc_password_delegate }}"
   block:
     - name: Update user password when auth_token is defined
       community.general.redfish_command:
@@ -41,4 +42,3 @@
         auth_token: "{{ dpu_bmc_token }}"
         account_username: "{{ update_bmc_password_login_name }}"
         account_password: "{{ update_bmc_password_new_pass }}"
-      delegate_to: "{{ update_bmc_password_delegate }}"
