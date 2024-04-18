@@ -4,10 +4,10 @@
   :antsibull-docs: 2.7.0
 
 
-.. _plugins_in_opi.dpu:
+.. _plugins_in_opiproject.dpu:
 
-Opi.Dpu
-=======
+Opiproject.Dpu
+==============
 
 Collection version 1.0.0
 
@@ -47,21 +47,21 @@ Ansible modules for DPUs
 Plugin Index
 ------------
 
-There are no plugins in the opi.dpu collection with automatically generated documentation.
+There are no plugins in the opiproject.dpu collection with automatically generated documentation.
 
 
 Role Index
 ----------
 
-These are the roles in the opi.dpu collection:
+These are the roles in the opiproject.dpu collection:
 
-* :ansplugin:`bmc_factory_reset role <opi.dpu.bmc_factory_reset#role>` -- Factory reset of DPU BMC
-* :ansplugin:`bmc_fw_update role <opi.dpu.bmc_fw_update#role>` -- Firmware update of DPU BMC
-* :ansplugin:`bmc_reboot role <opi.dpu.bmc_reboot#role>` -- Role to reset and restart DPU BMC
-* :ansplugin:`bmc_session role <opi.dpu.bmc_session#role>` -- Role to manage DPU BMC session
-* :ansplugin:`enable_secure_boot role <opi.dpu.enable_secure_boot#role>` -- Enable DPU secure boot
-* :ansplugin:`get_bmc_facts role <opi.dpu.get_bmc_facts#role>` -- Gathers facts about DPU BMC Inventory.
-* :ansplugin:`update_bmc_password role <opi.dpu.update_bmc_password#role>` -- Update Password of DPU BMC for a given user.
+* :ansplugin:`bmc_factory_reset role <opiproject.dpu.bmc_factory_reset#role>` -- Factory reset of DPU BMC
+* :ansplugin:`bmc_fw_update role <opiproject.dpu.bmc_fw_update#role>` -- Firmware update of DPU BMC
+* :ansplugin:`bmc_reboot role <opiproject.dpu.bmc_reboot#role>` -- Role to reset and restart DPU BMC
+* :ansplugin:`bmc_session role <opiproject.dpu.bmc_session#role>` -- Role to manage DPU BMC session
+* :ansplugin:`enable_secure_boot role <opiproject.dpu.enable_secure_boot#role>` -- Enable DPU secure boot
+* :ansplugin:`get_bmc_facts role <opiproject.dpu.get_bmc_facts#role>` -- Gathers facts about DPU BMC Inventory.
+* :ansplugin:`update_bmc_password role <opiproject.dpu.update_bmc_password#role>` -- Update Password of DPU BMC for a given user.
 
 .. toctree::
     :maxdepth: 1
