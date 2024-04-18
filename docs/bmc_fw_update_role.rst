@@ -11,24 +11,24 @@
 
 .. Anchors
 
-.. _ansible_collections.opi.dpu.bmc_fw_update_role:
+.. _ansible_collections.opiproject.dpu.bmc_fw_update_role:
 
 .. Title
 
-opi.dpu.bmc_fw_update role -- Firmware update of DPU BMC
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+opiproject.dpu.bmc_fw_update role -- Firmware update of DPU BMC
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This role is part of the `opi.dpu collection <https://galaxy.ansible.com/ui/repo/published/opi/dpu/>`_ (version 1.0.0).
+    This role is part of the `opiproject.dpu collection <https://galaxy.ansible.com/ui/repo/published/opiproject/dpu/>`_ (version 1.0.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
 
-    To install it use: :code:`ansible-galaxy collection install opi.dpu`.
+    To install it use: :code:`ansible-galaxy collection install opiproject.dpu`.
 
-    To use it in a playbook, specify: :code:`opi.dpu.bmc_fw_update`.
+    To use it in a playbook, specify: :code:`opiproject.dpu.bmc_fw_update`.
 
 .. contents::
    :local:
@@ -44,7 +44,7 @@ Entry point ``main`` -- Firmware update of DPU BMC
 
 .. rst-class:: ansible-version-added
 
-New in opi.dpu 1.0.0
+New in opiproject.dpu 1.0.0
 
 .. Deprecated
 
@@ -80,7 +80,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--auth_token"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__auth_token:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__auth_token:
 
       .. rst-class:: ansible-option-title
 
@@ -117,7 +117,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_image_file"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_image_file:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_image_file:
 
       .. rst-class:: ansible-option-title
 
@@ -158,7 +158,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_image_url"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_image_url:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_image_url:
 
       .. rst-class:: ansible-option-title
 
@@ -199,7 +199,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_inventory_name"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_inventory_name:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_inventory_name:
 
       .. rst-class:: ansible-option-title
 
@@ -240,7 +240,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_job_wait"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_job_wait:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_job_wait:
 
       .. rst-class:: ansible-option-title
 
@@ -285,7 +285,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--bmc_fw_update_reboot"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_reboot:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__bmc_fw_update_reboot:
 
       .. rst-class:: ansible-option-title
 
@@ -336,7 +336,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--hostname"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__hostname:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__hostname:
 
       .. rst-class:: ansible-option-title
 
@@ -373,7 +373,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--https_port"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__https_port:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__https_port:
 
       .. rst-class:: ansible-option-title
 
@@ -414,7 +414,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--password"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__password:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__password:
 
       .. rst-class:: ansible-option-title
 
@@ -451,7 +451,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--username"></div>
 
-      .. _ansible_collections.opi.dpu.bmc_fw_update_role__parameter-main__username:
+      .. _ansible_collections.opiproject.dpu.bmc_fw_update_role__parameter-main__username:
 
       .. rst-class:: ansible-option-title
 

@@ -11,24 +11,24 @@
 
 .. Anchors
 
-.. _ansible_collections.opi.dpu.enable_secure_boot_role:
+.. _ansible_collections.opiproject.dpu.enable_secure_boot_role:
 
 .. Title
 
-opi.dpu.enable_secure_boot role -- Enable DPU secure boot
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+opiproject.dpu.enable_secure_boot role -- Enable DPU secure boot
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This role is part of the `opi.dpu collection <https://galaxy.ansible.com/ui/repo/published/opi/dpu/>`_ (version 1.0.0).
+    This role is part of the `opiproject.dpu collection <https://galaxy.ansible.com/ui/repo/published/opiproject/dpu/>`_ (version 1.0.0).
 
     It is not included in ``ansible-core``.
     To check whether it is installed, run :code:`ansible-galaxy collection list`.
 
-    To install it use: :code:`ansible-galaxy collection install opi.dpu`.
+    To install it use: :code:`ansible-galaxy collection install opiproject.dpu`.
 
-    To use it in a playbook, specify: :code:`opi.dpu.enable_secure_boot`.
+    To use it in a playbook, specify: :code:`opiproject.dpu.enable_secure_boot`.
 
 .. contents::
    :local:
@@ -44,7 +44,7 @@ Entry point ``main`` -- Enable DPU secure boot
 
 .. rst-class:: ansible-version-added
 
-New in opi.dpu 1.0.0
+New in opiproject.dpu 1.0.0
 
 .. Deprecated
 
@@ -80,7 +80,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--auth_token"></div>
 
-      .. _ansible_collections.opi.dpu.enable_secure_boot_role__parameter-main__auth_token:
+      .. _ansible_collections.opiproject.dpu.enable_secure_boot_role__parameter-main__auth_token:
 
       .. rst-class:: ansible-option-title
 
@@ -117,7 +117,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--hostname"></div>
 
-      .. _ansible_collections.opi.dpu.enable_secure_boot_role__parameter-main__hostname:
+      .. _ansible_collections.opiproject.dpu.enable_secure_boot_role__parameter-main__hostname:
 
       .. rst-class:: ansible-option-title
 
@@ -154,7 +154,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--https_port"></div>
 
-      .. _ansible_collections.opi.dpu.enable_secure_boot_role__parameter-main__https_port:
+      .. _ansible_collections.opiproject.dpu.enable_secure_boot_role__parameter-main__https_port:
 
       .. rst-class:: ansible-option-title
 
@@ -195,7 +195,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--password"></div>
 
-      .. _ansible_collections.opi.dpu.enable_secure_boot_role__parameter-main__password:
+      .. _ansible_collections.opiproject.dpu.enable_secure_boot_role__parameter-main__password:
 
       .. rst-class:: ansible-option-title
 
@@ -232,7 +232,7 @@ Parameters
         <div class="ansible-option-cell">
         <div class="ansibleOptionAnchor" id="parameter-main--username"></div>
 
-      .. _ansible_collections.opi.dpu.enable_secure_boot_role__parameter-main__username:
+      .. _ansible_collections.opiproject.dpu.enable_secure_boot_role__parameter-main__username:
 
       .. rst-class:: ansible-option-title
 

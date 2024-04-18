@@ -2,7 +2,6 @@
 
 ## 1.0.0 (2024-04-16)
 
-
 ### Features
 
 * add new session management role ([a4a42d2](https://github.com/opiproject/ansible-opi-dpu/commit/a4a42d29b69c9473ee9678cd00338affde7d0d9d))
@@ -27,7 +26,6 @@
 * **session:** implement create and delete ([a936f68](https://github.com/opiproject/ansible-opi-dpu/commit/a936f68dfd8b558ffe032e79c9bbc2bfb0bfde95))
 * **update_bmc_password:** support both user/pass/auth ([0dfc7b5](https://github.com/opiproject/ansible-opi-dpu/commit/0dfc7b55c740e3208f11f4b3e63adfbf4c59fcdc))
 * use json_query to avoid index ([f51c70a](https://github.com/opiproject/ansible-opi-dpu/commit/f51c70a473a3de432c8622a9472425d6190c4fc9)), closes [#19](https://github.com/opiproject/ansible-opi-dpu/issues/19)
-
 
 ### Bug Fixes
 
