@@ -24,6 +24,7 @@
       community.general.redfish_command:
         category: Manager
         command: GracefulRestart
+        timeout: 60
         baseuri: "{{ inventory_hostname }}"
         username: "{{ dpu_bmc_username }}"
         password: "{{ dpu_bmc_password }}"
@@ -40,6 +41,7 @@
       community.general.redfish_command:
         category: Manager
         command: GracefulRestart
+        timeout: 60
         baseuri: "{{ inventory_hostname }}"
         auth_token: "{{ dpu_bmc_token }}"
 
