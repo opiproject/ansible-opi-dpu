@@ -49,7 +49,7 @@ dependencies: {
 repository: https://github.com/opiproject/ansible-opi-dpu
 
 # The URL to any online docs
-documentation: https://github.com/opiproject/ansible-opi-dpu
+documentation: https://github.com/opiproject/ansible-opi-dpu/tree/main/docs
 
 # The URL to the homepage of the collection/project
 homepage: https://github.com/opiproject/ansible-opi-dpu
