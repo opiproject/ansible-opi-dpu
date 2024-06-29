@@ -1,4 +1,1 @@
 python-dateutil>=2.8.2
-antsibull-changelog>=0.25.0
-antsibull-docs>=2.7.0
-ansible-lint>=6.22.2

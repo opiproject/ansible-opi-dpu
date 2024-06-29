@@ -2,4 +2,6 @@
 version: 3
 dependencies:
   galaxy: requirements.yml
-  python: requirements.txt
+  python:
+    - requirements.txt
+    - requirements-dev.txt
