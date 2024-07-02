@@ -42,7 +42,7 @@ tags: [opi, dpu, redfish, automation, devops, infrastructure]
 # L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
 # range specifiers can be set and are separated by ','
 dependencies: {
-  "community.general": ">=8.6.0",
+  "community.general": ">=9.1.0",
 }
 
 # The URL of the originating SCM repository
