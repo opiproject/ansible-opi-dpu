@@ -171,6 +171,10 @@
     category: Update
     command: GetUpdateStatus
     baseuri: "{{ inventory_hostname }}"
+    username: "{{ dpu_bmc_username | default(omit) }}"
+    password: "{{ dpu_bmc_password | default(omit) }}"
+    auth_token: "{{ dpu_bmc_token | default(omit) }}"
+    update_handle: "{{ bmc_firmware_update_taskid }}"
   register: update_progress
   until: update_progress.redfish_facts.update_status.status != 'Running'
   retries: 60
@@ -208,4 +212,5 @@
     msg: "{{ bmc_fw_update_version_failure }}"
   when:
     - bmc_fw_update_reboot is true
-    - not bmc_fw_update_image_file is search(bmc_fw_update_got_fw_version | regex_search('[0-9-.]+'))
+    - not bmc_fw_update_image_file is search(bmc_fw_update_got_fw_version | regex_search('[0-9-.]+'))"
+
