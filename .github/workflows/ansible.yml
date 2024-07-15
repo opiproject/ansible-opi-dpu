@@ -52,7 +52,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-         python-version: ["3.10", "3.11", "3.12"]
+         python-version: ["3.10", "3.11"]
          ansible-version: [stable-2.15, stable-2.16, stable-2.17]
 
     steps:
@@ -76,7 +76,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-         python-version: ["3.10", "3.11", "3.12"]
+         python-version: ["3.10", "3.11"]
          ansible-version: [stable-2.15, stable-2.16, stable-2.17]
 
     steps:
