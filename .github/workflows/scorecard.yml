@@ -10,6 +10,8 @@ on:
 permissions:
   id-token: write
   contents: read
+  actions: read
+  security-events: write
 
 jobs:
   call:
