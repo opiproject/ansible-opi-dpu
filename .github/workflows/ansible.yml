@@ -57,7 +57,7 @@ jobs:
 
     steps:
       - name: Perform unit testing with ansible-test
-        uses: ansible-community/ansible-test-gh-action@release/v1
+        uses: ansible-community/ansible-test-gh-action@v1.15.0
         with:
           testing-type: units
           coverage: always
@@ -81,7 +81,7 @@ jobs:
 
     steps:
       - name: Perform sanity testing
-        uses: ansible-community/ansible-test-gh-action@release/v1
+        uses: ansible-community/ansible-test-gh-action@v1.15.0
         with:
           ansible-core-version: ${{ matrix.ansible-version }}
           target-python-version: ${{ matrix.python-version }}
