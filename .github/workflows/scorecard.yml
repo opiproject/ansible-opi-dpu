@@ -7,6 +7,12 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  id-token: write
+  contents: read
+  actions: read
+  security-events: write
+
 jobs:
   call:
     uses: opiproject/actions/.github/workflows/scorecard.yml@main

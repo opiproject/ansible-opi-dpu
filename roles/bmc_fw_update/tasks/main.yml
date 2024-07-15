@@ -14,7 +14,7 @@
   ansible.builtin.fail:
     msg: "{{ bmc_fw_update_mutual_exclusive_msg }}"
   when:
-    - ((dpu_bmc_username is defined or dpu_bmc_password is defined) and dpu_bmc_token is defined)
+    - (dpu_bmc_username is defined or dpu_bmc_password is defined) and (dpu_bmc_token is defined)
 
 - name: Get Firmware Inventory
   ansible.builtin.include_role:
@@ -23,11 +23,11 @@
 
 - name: Store current fw version
   ansible.builtin.set_fact:
-    bmc_fw_update_cur_fw_version: "{{ vars.get_bmc_facts_all_fw_versions[bmc_fw_update_inventory_name] }}"
+    bmc_fw_update_cur_fw_version: "{{ get_bmc_facts_before.get_bmc_facts_all_fw_versions[bmc_fw_update_inventory_name] }}"
 
 - name: Print BMC Version
   ansible.builtin.debug:
-    msg: "{{ get_bmc_facts_all_fw_versions }}"
+    msg: "{{ get_bmc_facts_before.get_bmc_facts_all_fw_versions }}"
 
 - name: Check if firmware image exists locally {{ bmc_fw_update_image_file }}
   ansible.builtin.stat:
@@ -43,7 +43,6 @@
   delegate_to: "{{ bmc_fw_update_delegate }}"
   when: not bmc_fw_update_local_file_check.stat.exists
 
-# Consider replace with 'GetFirmwareUpdateCapabilities' when available
 - name: Check multipart support
   ansible.builtin.uri:
     url: "https://{{ inventory_hostname }}/redfish/v1/UpdateService"
@@ -51,16 +50,16 @@
     return_content: true
     status_code: 200
     body_format: json
-    url_username: "{{ dpu_bmc_username }}"
-    url_password: "{{ dpu_bmc_password }}"
+    url_username: "{{ dpu_bmc_username | default(omit) }}"
+    url_password: "{{ dpu_bmc_password | default(omit) }}"
+    headers:
+      X-Auth-Token: "{{ dpu_bmc_token | default(omit) }}"
     force_basic_auth: true
     validate_certs: false
   delegate_to: "{{ bmc_fw_update_delegate }}"
   register: bmc_fw_update_multipart_check
 
-# Deprecated method
 - name: Update BMC firmware of DPU using deprecated HttpPushUri
-  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is not defined
   ansible.builtin.uri:
     url: "https://{{ inventory_hostname }}{{ bmc_fw_update_multipart_check.json.HttpPushUri }}"
     method: POST
@@ -68,36 +67,38 @@
     src: "{{ bmc_fw_update_image_file }}"
     headers:
       Content-Type: application/octet-stream
-    url_username: "{{ dpu_bmc_username }}"
-    url_password: "{{ dpu_bmc_password }}"
+      X-Auth-Token: "{{ dpu_bmc_token | default(omit) }}"
+    url_username: "{{ dpu_bmc_username | default(omit) }}"
+    url_password: "{{ dpu_bmc_password | default(omit) }}"
     force_basic_auth: true
     validate_certs: false
   delegate_to: "{{ bmc_fw_update_delegate }}"
-  register: bmc_fw_update_depecated_http_push
+  register: bmc_fw_update_deprecated_http_push
+  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is not defined
 
 - name: Extract task id from update task
-  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is not defined
   ansible.builtin.set_fact:
-    bmc_firmware_update_taskid: '{{ bmc_fw_update_depecated_http_push.location | urlsplit("path") }}'
+    bmc_firmware_update_taskid: '{{ bmc_fw_update_deprecated_http_push.location | urlsplit("path") }}'
+  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is not defined
 
 - name: Update BMC firmware of DPU
-  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is defined
   community.general.redfish_command:
     category: Update
     command: MultipartHTTPPushUpdate
     baseuri: "{{ inventory_hostname }}"
-    username: "{{ dpu_bmc_username }}"
-    password: "{{ dpu_bmc_password }}"
-    # auth_token: "{{ dpu_bmc_token }}"
+    auth_token: "{{ dpu_bmc_token | default(omit) }}"
+    username: "{{ dpu_bmc_username | default(omit) }}"
+    password: "{{ dpu_bmc_password | default(omit) }}"
     timeout: 600
     update_image_file: "{{ bmc_fw_update_image_file }}"
   register: result_update_task
   delegate_to: "{{ bmc_fw_update_delegate }}"
+  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is defined
 
 - name: Extract task id from update task
-  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is defined
   ansible.builtin.set_fact:
     bmc_firmware_update_taskid: "{{ result_update_task.return_values.update_status.handle }}"
+  when: bmc_fw_update_multipart_check.json.MultipartHttpPushUri is defined
 
 - name: Print TASK id for tracking
   ansible.builtin.debug:
@@ -108,20 +109,20 @@
     seconds: 10
 
 - name: Get the status of an update operation in a loop
-  when: bmc_fw_update_job_wait is true
   community.general.redfish_info:
     category: Update
     command: GetUpdateStatus
     baseuri: "{{ inventory_hostname }}"
-    username: "{{ dpu_bmc_username }}"
-    password: "{{ dpu_bmc_password }}"
-    # auth_token: "{{ dpu_bmc_token }}"
+    auth_token: "{{ dpu_bmc_token | default(omit) }}"
+    username: "{{ dpu_bmc_username | default(omit) }}"
+    password: "{{ dpu_bmc_password | default(omit) }}"
     update_handle: "{{ bmc_firmware_update_taskid }}"
   register: update_progress
   until: update_progress.redfish_facts.update_status.status != 'Running'
   retries: 60
   delay: 30
   delegate_to: "{{ bmc_fw_update_delegate }}"
+  when: bmc_fw_update_job_wait is true
 
 - name: Validate task was completed
   ansible.builtin.fail:
@@ -133,8 +134,7 @@
 - name: Reboot BMC to apply new firmware of DPU
   ansible.builtin.include_role:
     name: bmc_reboot
-  when:
-    - bmc_fw_update_reboot is true
+  when: bmc_fw_update_reboot is true
 
 - name: Get Firmware Inventory
   ansible.builtin.include_role:
@@ -143,15 +143,16 @@
 
 - name: Print BMC Version
   ansible.builtin.debug:
-    msg: "{{ get_bmc_facts_all_fw_versions }}"
+    msg: "{{ get_bmc_facts_after.get_bmc_facts_all_fw_versions }}"
 
 - name: Store fw version we installed
   ansible.builtin.set_fact:
-    bmc_fw_update_got_fw_version: "{{ vars.get_bmc_facts_all_fw_versions[bmc_fw_update_inventory_name] }}"
+    bmc_fw_update_got_fw_version: "{{ get_bmc_facts_after.get_bmc_facts_all_fw_versions[bmc_fw_update_inventory_name] }}"
 
 - name: Validate fw image matches given filename
   ansible.builtin.fail:
     msg: "{{ bmc_fw_update_version_failure }}"
   when:
     - bmc_fw_update_reboot is true
-    - not bmc_fw_update_image_file is search(bmc_fw_update_got_fw_version | regex_search('[0-9-.]+'))
+    - not (bmc_fw_update_image_file is search(bmc_fw_update_got_fw_version | regex_search('[0-9-.]+')))
+
