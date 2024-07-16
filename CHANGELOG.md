@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.1.0](https://github.com/opiproject/ansible-opi-dpu/compare/v1.0.0...v1.1.0) (2024-07-06)
+
+
+### Features
+
+* **core:** add execution environment ([c67b587](https://github.com/opiproject/ansible-opi-dpu/commit/c67b5877ce0273abdf4553a4635af2c846d91006))
+* new nvidia bmc version ([be352bb](https://github.com/opiproject/ansible-opi-dpu/commit/be352bb6ae3824957b62a09dc751d12479fd03a6))
+
+
+### Bug Fixes
+
+* bmc reboot add 60 sec timeout when sending cmd ([bc84837](https://github.com/opiproject/ansible-opi-dpu/commit/bc848378e990856378432d6161c78777d185df78))
+* **galaxy:** point to docs folder ([46ee9e7](https://github.com/opiproject/ansible-opi-dpu/commit/46ee9e763bc4f5ff7a39df968f125d0f3c3ebe6c))
+* implement Manager.ResetToDefaults ([bb433ec](https://github.com/opiproject/ansible-opi-dpu/commit/bb433ec06b30b26a30d0ae838515de74efbd75d9)), closes [#65](https://github.com/opiproject/ansible-opi-dpu/issues/65)
+* lint issue ([71e59de](https://github.com/opiproject/ansible-opi-dpu/commit/71e59de9eea8a14504cacb4964f4da4f4a15300b))
+* move delegate_to to block ([8fa24c1](https://github.com/opiproject/ansible-opi-dpu/commit/8fa24c1499742933aef9ce13f3882761af9350dc))
+* rename namespace ([d5dab3c](https://github.com/opiproject/ansible-opi-dpu/commit/d5dab3ceb178b271616b1f9721fcea296e024e6d))
+* **requirements:** now can mention our collection ([be211af](https://github.com/opiproject/ansible-opi-dpu/commit/be211afd97c9c89d4bbbc3ae0e281ffed1cb4c9c))
+
 ## 1.0.0 (2024-04-16)
 
 ### Features
