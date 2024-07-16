@@ -5,3 +5,5 @@
 # defaults file for bmc_reboot
 
 https_port: 443
+bmc_reboot_should_wait: true
+bmc_reboot_wait_timeout: 120

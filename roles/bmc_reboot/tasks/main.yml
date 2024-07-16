@@ -28,10 +28,8 @@
         baseuri: "{{ inventory_hostname }}"
         username: "{{ dpu_bmc_username }}"
         password: "{{ dpu_bmc_password }}"
-
-    - name: Pause for 60 seconds for BMC to Reboot
-      ansible.builtin.pause:
-        seconds: 60
+        wait: "{{ bmc_reboot_should_wait }}"
+        wait_timeout: "{{ bmc_reboot_wait_timeout }}"
 
 - name: Reboot BMC when auth_token is defined
   when: dpu_bmc_token is defined
@@ -44,7 +42,5 @@
         timeout: 60
         baseuri: "{{ inventory_hostname }}"
         auth_token: "{{ dpu_bmc_token }}"
-
-    - name: Pause for 60 seconds for BMC to Reboot
-      ansible.builtin.pause:
-        seconds: 60
+        wait: "{{ bmc_reboot_should_wait }}"
+        wait_timeout: "{{ bmc_reboot_wait_timeout }}"
